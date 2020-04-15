@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="PLWPF.UserControls.HostingUnitUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PLWPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="35*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,25,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.PrivateName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,67,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.FamilyName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,110,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.MailAddress, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,153,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.PhoneNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.11,0.714"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,25,0,0" TextWrapping="Wrap" Text="{Binding Path=Adults, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
+        <!--Bank-->
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,201,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankAccountNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,248,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BankNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,296,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BankName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,371,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchCity, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,334,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,414,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchAddress, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,256,0,0" TextWrapping="Wrap" Text="{Binding Path=Type, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,67,0,0" TextWrapping="Wrap" Text="{Binding Path=Children, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,135,0,0" TextWrapping="Wrap" Text="{Binding Path=Area, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        
+        <!--Labels-->
+        <Label Content="Private Name" HorizontalAlignment="Left" Margin="44,25,0,0" VerticalAlignment="Top"/>
+        <Label Content="Family Name" HorizontalAlignment="Left" Margin="44,64,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="44,107,0,0" VerticalAlignment="Top"/>
+        <Label Content="Phone Number" HorizontalAlignment="Left" Margin="44,150,0,0" VerticalAlignment="Top"/>
+        <Label Content="Bank Account Number" HorizontalAlignment="Left" Margin="44,198,0,0" VerticalAlignment="Top"/>
+        <Label Content="Bank Number" HorizontalAlignment="Left" Margin="44,245,0,0" VerticalAlignment="Top"/>
+        <Label Content="Bank Name" HorizontalAlignment="Left" Margin="44,293,0,0" VerticalAlignment="Top"/>
+        <Label Content="Branch Number" HorizontalAlignment="Left" Margin="44,331,0,0" VerticalAlignment="Top"/>
+        <Label Content="Branch City" HorizontalAlignment="Left" Margin="44,365,0,0" VerticalAlignment="Top"/>
+        <Label Content="Branch Address" HorizontalAlignment="Left" Margin="45,411,0,0" VerticalAlignment="Top"/>
+        <Label Content="Children" HorizontalAlignment="Left" Margin="63,64,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Adults" HorizontalAlignment="Left" Margin="55,22,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="72,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.829,-1.154" Grid.Column="1"/>
+        <Label Content="Area" HorizontalAlignment="Left" Margin="73,132,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Separator HorizontalAlignment="Left" Height="94" Margin="214,130,0,0" VerticalAlignment="Top" Width="336" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+        <Button Content="Click" Click="Button_Click" HorizontalAlignment="Left" Margin="55,371,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+    </Grid>
+</UserControl>

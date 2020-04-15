@@ -1,0 +1,15 @@
+﻿<Window x:Class="PLWPF.HostingUnitOptions.PrivateAreaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF.HostingUnitOptions"
+        mc:Ignorable="d"
+        Title="PrivateAreaWindow" Height="400" Width="400">
+    <Grid>
+        <Button Content="Update Unit" HorizontalAlignment="Left" Margin="35,38,0,0" VerticalAlignment="Top" Width="315" Height="67" Click="UpdateUnitBtn_Click" FontSize="36"/>
+        <Button Content="Orders Area" HorizontalAlignment="Left" Margin="35,147,0,0" VerticalAlignment="Top" Width="315" Height="70" Click="OrdersAreaBtn_Click" FontSize="36"/>
+        <Button Content="Delete Unit" HorizontalAlignment="Left" Margin="35,263,0,0" VerticalAlignment="Top" Width="315" Height="65" Click="DeleteUnitBtn_Click" FontSize="36"/>
+
+    </Grid>
+</Window>

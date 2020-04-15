@@ -1,0 +1,35 @@
+﻿<Window x:Class="PLWPF.Administrator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        mc:Ignorable="d"
+        Title="Administrator" Height="450" Width="800">
+    <Grid>
+        <TabControl Name="PrivateAreaTabControl" HorizontalAlignment="Left" Height="352" Margin="23,27,0,0" VerticalAlignment="Top" Width="730" TabStripPlacement="Left">
+            <TabItem Header="Hosting Units">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Name="UnitsListGrid" MouseDoubleClick="ListGrid_MouseDoubleClick" PreviewKeyDown="PreviewKeyDownHandler" HorizontalAlignment="Left" Height="295" Margin="10,10,0,0" VerticalAlignment="Top" Width="609" AutoGeneratingColumn="OnAutoGeneratingColumn" IsReadOnly="True" CanUserDeleteRows="True" CanUserAddRows="False"/>
+                    <Button Content="View" Margin="10,310,531,11" Click="ViewBtn_Click"/>
+                    <Button Content="Edit" Margin="103,310,438,11" Click="EditBtn_Click"/>
+                    <Button Content="Delete" Margin="196,310,345,11" Click="DeleteBtn_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Guest Requests">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Name="GuestsListGrid" MouseDoubleClick="ListGrid_MouseDoubleClick" Height="296" Margin="10,10,10,0" VerticalAlignment="Top" AutoGeneratingColumn="OnAutoGeneratingColumn" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"/>
+                    <Button Content="View" Margin="10,310,531,11" Click="ViewBtn_Click"/>
+                    <!--<Button IsEnabled="{Binding Path=DeleteButtonEnable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Content="Delete" Margin="264,311,277,10" Click="Delete_Button_Click"/>-->
+                </Grid>
+            </TabItem>
+            <TabItem Header="Orders">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Name="OrdersListGrid" MouseDoubleClick="ListGrid_MouseDoubleClick"  HorizontalAlignment="Left" Height="296" Margin="10,10,0,0" VerticalAlignment="Top" Width="609" AutoGeneratingColumn="OnAutoGeneratingColumn" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"/>
+                    <Button Content="View" Margin="10,310,531,11" Click="ViewBtn_Click"/>
+                    <Button Content="Update" Margin="103,310,438,11" Click="EditBtn_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
