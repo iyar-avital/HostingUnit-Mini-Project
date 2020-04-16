@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static BE.Definitions;
 
 namespace BE
 {
@@ -12,9 +11,9 @@ namespace BE
         public int HostingUnitKey { get; set; }
         public Host Owner { get; set; }
         public string HostingUnitName { get; set; }
-        public  bool[,] Diary  { get; set; }
-        public Hosting_Area Area { get; set; }
-        public Hosting_Type Type { get; set; }
+        public bool[,] Diary { get; set; }
+        public Areas Area { get; set; }
+        public Type_Unit Type { get; set; }
         public int Adults { get; set; }
         public int Rooms { get; set; }
         public int Children { get; set; }
@@ -22,27 +21,54 @@ namespace BE
         public bool Jacuzzi { get; set; }
         public bool Garden { get; set; }
         public bool ChildrensAttractions { get; set; }
-        public List<DateTime> AllOrders { get; set; }
-        public List<string> picture { get; set; }
+
         public override string ToString()
         {
-            return HostingUnitKey.ToString() + Owner.ToString() + HostingUnitName.ToString() + Diary.ToString() + Adults.ToString()
-                 + Children.ToString()+Pool.ToString()+Jacuzzi.ToString()+Garden.ToString()+ChildrensAttractions.ToString();
+            string str = "";
+            str += "Hosting Unit Key: " + HostingUnitKey + "\n" +
+                "Owner \n" + Owner + "\n" +
+                "Hosting Unit Name: " + HostingUnitName + "\n" +
+                Diary.ToString() +
+                "Adults: " + Adults + "\n" +
+                "Children: " + Children + "\n" +
+                "Pool: " + Pool + "\n" +
+                "Jacuzzi: " + Jacuzzi + "\n" +
+                "Garden: " + Garden + "\n" +
+                "Childrens Attractions: " + ChildrensAttractions;
+            DateTime startDate = new DateTime(2020, 01, 01);
+            DateTime endDate = new DateTime();
+            DateTime Date = new DateTime(2020, 01, 02);
+            while (Date.Year != 2021)
+            {
+                if (this[Date] && !this[Date.AddDays(-1)])
+                {
+                    startDate = Date;
+                    Date = Date.AddDays(1);
+                }
+                else if (this[Date] && Date.AddDays(1).Year != Date.Year)
+                {
+                    endDate = Date;
+                    str += startDate.ToString("dd/MM") + "-" + endDate.ToString("dd/MM") + "\n";
+                    Date = Date.AddDays(1);
+                }
+                else if (this[Date] && !this[Date.AddDays(1)])
+                {
+                    endDate = Date.AddDays(1);
+                    str += startDate.ToString("dd/MM") + "-" + endDate.ToString("dd/MM") + "\n";
+                    Date = Date.AddDays(1);
+                }
+                else
+                {
+                    Date = Date.AddDays(1);
+                }
+            }
+            return str;
         }
 
-
-        /*public HostingUnit()
+        public bool this[DateTime index]
         {
-            HostingUnitKey = 908089;
-            Owner = new Host();
-            HostingUnitName = "fff";
-            Diary = new bool[13, 32];
-            Adults = 8;
-            Children = 0;
-            Pool = true;
-            Jacuzzi = true;
-            Garden = true;
-            ChildrensAttractions = true;
-        }*/
+            get { return Diary[index.Month - 1, index.Day - 1]; }
+            set { Diary[index.Month - 1, index.Day - 1] = value; }
+        }
     }
 }

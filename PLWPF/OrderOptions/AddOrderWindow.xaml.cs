@@ -61,7 +61,7 @@ namespace PLWPF.OrderOptions
             };
 
             e.Column.Header = Headers.ContainsKey(propertyDescriptor.DisplayName) ? Headers[propertyDescriptor.DisplayName] : propertyDescriptor.DisplayName;
-            
+
         }
 
         private void AddOrder_Button_Click(object sender, RoutedEventArgs e)

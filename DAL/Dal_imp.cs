@@ -11,10 +11,41 @@ namespace DAL
 {
    class Dal_imp : Idal
     {
-        public List<Order> Lorder => DataSource.ListOrder;
-        public List<HostingUnit> Lunit => DataSource.ListHostingUnits;
-        public List<GuestRequest> LGrequest => DataSource.ListGuestRequest;
-        public List<BankBranch> Lbank => DataSource.ListBankBranch;
+        public List<Order> Lorder(Func<Order, bool> predicat = null)
+        {
+            if (predicat == null)
+                return DataSource.ListOrder.Select(item => item.Clone()).ToList();
+            var v = from item in DataSource.ListOrder
+                    where predicat(item) == true
+                    select item.Clone();
+            return v.ToList();
+        }
+
+        public List<HostingUnit> Lunit(Func<HostingUnit, bool> predicat = null)
+        {
+            if (predicat == null)
+                return DataSource.ListHostingUnits.Select(item => item.Clone()).ToList();
+            var v = from item in DataSource.ListHostingUnits
+                    where predicat(item) == true
+                    select item.Clone();
+            return v.ToList();
+        }
+
+        public List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null)
+        {
+            if (predicat == null)
+                return DataSource.ListGuestRequest.Select(item => item.Clone()).ToList();
+            var v = from item in DataSource.ListGuestRequest
+                    where predicat(item) == true
+                    select item.Clone();
+            return v.ToList();
+        }
+
+        public List<BankBranch> Lbank()
+        {
+            return DataSource.ListBankBranch;
+        }
+
         public List<BankBranch> returnLbank()
         {
             var BankBranches = DataSource.ListHostingUnits.Select(x => x.Owner.BankBranchDetails).ToList();
@@ -31,12 +62,13 @@ namespace DAL
                 DataSource.ListGuestRequest.Add(Grect);
             return true;
         }
-        public bool UpdateClientRequest(GuestRequest Up)
+
+        public bool UpdateClientRequest(GuestRequest Up, Request_Status Rs)
         {
             int index = DataSource.ListGuestRequest.FindIndex(item => item.GuestRequestKey == Up.GuestRequestKey);
             if (index == -1)
                 throw new Exception("Guest Request with the same number not found.");
-            DataSource.ListGuestRequest[index] = Up;
+            DataSource.ListGuestRequest[index].StatusRequest = Rs;
             return true;
         }
 
@@ -73,28 +105,51 @@ namespace DAL
         //Order:
         public bool AddOrder(Order Aor)
         {
-
-                Aor.OrderKey = Configuration.OrderKeySeq++;
-                DataSource.ListOrder.Add(Aor);
+            Aor.OrderKey = Configuration.OrderKeySeq++;
+            Aor.CreateDate = DateTime.Now;
+            DataSource.ListOrder.Add(Aor.Clone());
             return true;
         }
-        public bool UpdateOrder(Order Uor)
+
+        public bool UpdateOrder(Order Uor, OrderStatus newstatus)
         {
             int index = DataSource.ListOrder.FindIndex(item => item.OrderKey == Uor.OrderKey);
             if (index == -1)
                 throw new Exception("Order with the same number not found.");
-            DataSource.ListOrder[index] = Uor;
+            DataSource.ListOrder[index].StatusOrder = newstatus;
             return true;
         }
 
+        public GuestRequest GetClientRequest(int GKey)
+        {
+            var g = (from guest in DataSource.ListGuestRequest
+                     where guest.GuestRequestKey == GKey
+                     select guest).FirstOrDefault();
+            if (g == null)
+                throw new Exception("Guest with Key [" + GKey + "] does not exist");
+            return g.Clone();
+        }
 
-       
-        
-        //public List<Order> Lorder
-        //{
-        //    return DataSource.ListOrder;
-        //}
-     
+        public HostingUnit GetHostingUnit(int HKey)
+        {
+            var h = (from unit in DataSource.ListHostingUnits
+                     where unit.HostingUnitKey == HKey
+                     select unit).FirstOrDefault();
+            if (h == null)
+                throw new Exception("Unit with Key [" + HKey + "] does not exist");
+            return h.Clone();
+        }
+
+        public Order GetOrder(int OKey)
+        {
+            var o = (from order in DataSource.ListOrder
+                     where order.OrderKey == OKey
+                     select order).FirstOrDefault();
+            if (o == null)
+                throw new Exception("Unit with Key [" + OKey + "] does not exist");
+            return o.Clone();
+        }
+
 
     }
 }

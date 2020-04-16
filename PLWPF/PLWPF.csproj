@@ -82,9 +82,18 @@
     <Compile Include="HostingUnitOptions\ViewUnitWindow.xaml.cs">
       <DependentUpon>ViewUnitWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OrderOptions\AddOrderWindow.xaml.cs" />
-    <Compile Include="OrderOptions\ListOrderToUpdate.xaml.cs" />
-    <Compile Include="OrderOptions\UpdateOrderWindow.xaml.cs" />
+    <Compile Include="OrderOptions\AddOrderWindow.xaml.cs">
+      <DependentUpon>AddOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderOptions\ListOrderToUpdate.xaml.cs">
+      <DependentUpon>ListOrderToUpdate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderOptions\UpdateOrderWindow.xaml.cs">
+      <DependentUpon>UpdateOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderOptios.xaml.cs">
+      <DependentUpon>OrderOptios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GuestRequestUserControl.xaml.cs">
       <DependentUpon>GuestRequestUserControl.xaml</DependentUpon>
     </Compile>
@@ -180,16 +189,20 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrderOptions\AddOrderWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrderOptions\ListOrderToUpdate.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrderOptions\UpdateOrderWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderOptios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\GuestRequestUserControl.xaml">
       <SubType>Designer</SubType>
@@ -200,5 +213,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

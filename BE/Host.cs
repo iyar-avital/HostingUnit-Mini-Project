@@ -21,21 +21,13 @@ namespace BE
 
         public override string ToString()
         {
-             return HostKey.ToString()+ PrivateName.ToString()+ FamilyName.ToString() + PhoneNumber.ToString()
-            + MailAddress.ToString() + BankBranchDetails.ToString()+ BankAccountNumber.ToString() + CollectionClearance.ToString();
+            return "Host Key: " + HostKey + "\n" +
+               "Private Name: " + PrivateName + "\n" +
+               "Family Name: " + PhoneNumber + "\n" +
+               "Mail Address: " + MailAddress + "\n" +
+               "Bank Branch Details: \n" + BankBranchDetails + "\n" +
+               "Bank Account Number: " + BankAccountNumber + "\n" +
+               "Collection Clearance:" + CollectionClearance + "\n";
         }
-        /*
-        public Host()
-        {
-            HostKey = 080808;
-            PrivateName = "jgjg";
-            FamilyName = "dgdsrsedr";
-            FhoneNumber = 808008776;
-            MailAddress = "ygugfu";
-            BankBranchDetails = new BankBranch();
-            BankAccountNumber = 000;
-            CollectionClearance = true;
-        }*/
-
     }
 }

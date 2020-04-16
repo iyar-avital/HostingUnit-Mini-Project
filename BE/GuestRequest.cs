@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static BE.Definitions;
 
 namespace BE
 {
@@ -17,15 +16,15 @@ namespace BE
         public DateTime RegistrationDate { get; set; }
         public DateTime EntryDate { get; set; }
         public DateTime ReleaseDate { get; set; }
-         public Request_Area Area { get; set; }
+        public Areas Area { get; set; }
         public Request_SubArea SubArea { get; set; }//לא חובה
-        public Request_Type Type { get; set; }
+        public Type_Unit Type { get; set; }
         public int Adults { get; set; }
         public int Children { get; set; }
-         public Request_Pool Pool { get; set; }
-        public Request_Jacuzzi Jacuzzi { get; set; }
-        public Request_Garden Garden { get; set; }
-        public Request_ChildrensAttractions ChildrensAttractions { get; set; }
+        public Option Pool { get; set; }
+        public Option Jacuzzi { get; set; }
+        public Option Garden { get; set; }
+        public Option ChildrensAttractions { get; set; }
 
 
         public override string ToString()

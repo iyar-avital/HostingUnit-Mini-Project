@@ -31,13 +31,13 @@ namespace PL
             h1.Owner.CollectionClearance = true;
             h1.HostingUnitName = "נוף הגליל";
             h1.Adults = 9;
-            h1.Area = Hosting_Area.Center;
+            h1.Area = Areas.Center;
             h1.Children = 6;
             h1.ChildrensAttractions = true;
             h1.Garden = false;
             h1.Jacuzzi = false;
             h1.Pool = true;
-            h1.Type = Hosting_Type.Zimmer;
+            h1.Type = Type_Unit.Zimmer;
             h1.Diary = new bool[13, 32];
 
             //example2  of HostingUnit
@@ -57,13 +57,13 @@ namespace PL
             h2.Owner.CollectionClearance = true;
             h2.HostingUnitName = "קראון הוטל";
             h2.Adults = 2;
-            h2.Area = Hosting_Area.Jerusalem;
+            h2.Area = Areas.Jerusalem;
             h2.Children = 2;
             h2.ChildrensAttractions = false;
             h2.Garden = true;
             h2.Jacuzzi = true;
             h2.Pool = true;
-            h2.Type = Hosting_Type.HotelRoom;
+            h2.Type = Type_Unit.HotelRoom;
             h2.Diary = new bool[13, 32];
 
             //example1  of GuestRequest
@@ -76,15 +76,15 @@ namespace PL
             g1.RegistrationDate = DateTime.Now;
             g1.EntryDate = new DateTime(2020, 2, 8);
             g1.ReleaseDate = new DateTime(2020, 2, 10);
-            g1.Area =Request_Area.Jerusalem;
+            g1.Area = Areas.Jerusalem;
             g1.SubArea = Request_SubArea.Jerusalem;
-            g1.Type = Request_Type.HotelRoom;
+            g1.Type = Type_Unit.HotelRoom;
             g1.Adults = 2;
             g1.Children = 2;
-            g1.Pool = Request_Pool.Possible;
-            g1.Jacuzzi = Request_Jacuzzi.Not_interested;
-            g1.Garden = Request_Garden.Not_interested;
-            g1.ChildrensAttractions = Request_ChildrensAttractions.Possible;
+            g1.Pool = Option.Possible;
+            g1.Jacuzzi = Option.Not_interested;
+            g1.Garden = Option.Not_interested;
+            g1.ChildrensAttractions = Option.Possible;
 
             //example1  of GuestRequest
             GuestRequest g2 = new GuestRequest();
@@ -96,15 +96,15 @@ namespace PL
             g2.RegistrationDate = DateTime.Now;
             g2.EntryDate = new DateTime(2020, 2, 4);
             g2.ReleaseDate = new DateTime(2020, 2, 8);
-            g2.Area = Request_Area.North;
+            g2.Area = Areas.North;
             g2.SubArea = Request_SubArea.Hermon;
-            g2.Type = Request_Type.HostingUnit;
+            g2.Type = Type_Unit.HostingUnit;
             g2.Adults = 3;
             g2.Children = 4;
-            g2.Pool = Request_Pool.Necessary;
-            g2.Jacuzzi = Request_Jacuzzi.Not_interested;
-            g2.Garden = Request_Garden.Possible;
-            g2.ChildrensAttractions = Request_ChildrensAttractions.Necessary;
+            g2.Pool = Option.Necessary;
+            g2.Jacuzzi = Option.Not_interested;
+            g2.Garden = Option.Possible;
+            g2.ChildrensAttractions = Option.Necessary;
 
             //example3  of GuestRequest
             GuestRequest g3 = new GuestRequest();
@@ -116,16 +116,16 @@ namespace PL
             g3.RegistrationDate = DateTime.Now;
             g3.EntryDate = new DateTime(2020, 3, 5);
             g3.ReleaseDate = new DateTime(2020, 3, 6);
-            g3.Area = Request_Area.Center;
+            g3.Area = Areas.Center;
             g3.SubArea = Request_SubArea.Tel_Aviv;
-            g3.Type = Request_Type.Zimmer;
+            g3.Type = Type_Unit.Zimmer;
             g3.Adults = 2;
             g3.Children = 5;
-            g3.Pool = Request_Pool.Possible;
-            g3.Jacuzzi = Request_Jacuzzi.Not_interested;
-            g3.Garden =Request_Garden.Necessary;
-            g3.ChildrensAttractions = Request_ChildrensAttractions.Not_interested;
-            g3.ChildrensAttractions = Request_ChildrensAttractions.Not_interested;
+            g3.Pool = Option.Possible;
+            g3.Jacuzzi = Option.Not_interested;
+            g3.Garden = Option.Necessary;
+            g3.ChildrensAttractions = Option.Not_interested;
+            g3.ChildrensAttractions = Option.Not_interested;
 
             //1
             Console.WriteLine("Add ClientRequest:");
@@ -212,7 +212,7 @@ namespace PL
             {
                 try
                 {
-                    BL1.UpdateOrder(item);
+                    // BL1.UpdateOrder(item);
                 }
                 catch (Exception e)
                 {
@@ -233,7 +233,7 @@ namespace PL
                 Console.WriteLine(e);
                 //  Console.WriteLine("  \n  ");
             }
- 
+
         }
     }
 }

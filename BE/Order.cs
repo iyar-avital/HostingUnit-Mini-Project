@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static BE.Definitions;
 
 namespace BE
 {
@@ -17,8 +16,11 @@ namespace BE
         public DateTime OrderDate { get; set; }
         public override string ToString()
         {
-            return HostingUnitKey.ToString() + GuestRequestKey.ToString() + OrderKey.ToString()
-                + CreateDate.ToString() + OrderDate.ToString();
+            return "Hosting Unit Key: " + HostingUnitKey + "\n" +
+                "Guest Request Key: " + GuestRequestKey + "\n" +
+                "Order Key: " + OrderKey + "\n" +
+                "Create Date: " + CreateDate.ToString("dd/MM") + "\n" +
+                "Order Date: " + OrderDate.ToString("dd/MM");
         }
     }
 }

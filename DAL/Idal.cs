@@ -10,15 +10,20 @@ namespace DAL
     public interface Idal
     {
         bool AddClientRequest(GuestRequest Grect);
-        bool UpdateClientRequest(GuestRequest Up);
+        bool UpdateClientRequest(GuestRequest Up, Request_Status status);
         bool AddHostingUnit(HostingUnit Hunit);
         bool DeleteHostingUnit(HostingUnit Dunit);
         bool UpdateHostingUnit(HostingUnit Uunit);
         bool AddOrder(Order Aor);
-        bool UpdateOrder(Order Uor);
-        List <HostingUnit> Lunit { get; }
-        List<GuestRequest> LGrequest { get; }
-        List<Order> Lorder { get;}
-        List<BankBranch> Lbank { get; }
+        bool UpdateOrder(Order Uor, OrderStatus status);
+
+        GuestRequest GetClientRequest(int GKey);
+        HostingUnit GetHostingUnit(int HKey);
+        Order GetOrder(int OKey);
+
+        List<HostingUnit> Lunit(Func<HostingUnit, bool> predicat = null);
+        List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null);
+        List<Order> Lorder(Func<Order, bool> predicat = null);
+        List<BankBranch> Lbank();
     }
 }

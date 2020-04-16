@@ -27,7 +27,7 @@ namespace PLWPF
     {
         private List<BE.HostingUnit> unitL = null;
         private List<GuestRequest> guestL = null;
-        private List<Order> orderL = null;
+        private List<BE.Order> orderL = null;
 
         public bool DeleteButtonEnable { get; set; } = true;
 

@@ -30,7 +30,7 @@ namespace PLWPF.OrderOptions
 
             foreach (var order in O)
                 ordersToUpdate.Add((BE.Order)order);
-         
+
         }
 
         private void CostumerRespond_button_Checked(object sender, RoutedEventArgs e)
@@ -63,7 +63,7 @@ namespace PLWPF.OrderOptions
                     ErrorMessages.Add(err.Message);
                 }
             }
-        
+
             if (SuccessMessages.Count > 0)
             {
                 Message += "Success:\n";

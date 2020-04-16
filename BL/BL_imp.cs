@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
@@ -28,9 +30,9 @@ namespace BL
         }
 
         // UpdateClientRequest
-        public bool UpdateClientRequest(GuestRequest Up)
+        public bool UpdateClientRequest(GuestRequest Up, Request_Status Rs)
         {
-            return dal.UpdateClientRequest(Up);
+            return dal.UpdateClientRequest(Up, Rs);
         }
 
 
@@ -47,7 +49,7 @@ namespace BL
         //Delete Hosting unit
         public bool DeleteHostingUnit(HostingUnit D)
         {
-            var h = from item in /*DataSource.ListOrder*/dal.Lorder
+            var h = from item in /*DataSource.ListOrder*/dal.Lorder()
                     where item.HostingUnitKey == D.HostingUnitKey
                     select new { StatusOrder = item.StatusOrder };
 
@@ -65,7 +67,7 @@ namespace BL
         //UpdateHostingUnit
         public bool UpdateHostingUnit(HostingUnit Uunit)
         {
-            var h = (from item in dal.Lunit
+            var h = (from item in dal.Lunit()
                      where item.HostingUnitKey == Uunit.HostingUnitKey
                      select item.Clone()).First();
 
@@ -88,132 +90,182 @@ namespace BL
         //AddOrder
         public bool AddOrder(Order Aor)
         {
-            var guestReq = (from item in dal.LGrequest
-                            where item.GuestRequestKey == Aor.GuestRequestKey
-                            select item.Clone()).First();
+            var guestReq = dal.LGrequest(item => item.GuestRequestKey == Aor.GuestRequestKey);
 
-            var hostingUnit = (from item in dal.Lunit
-                               where item.HostingUnitKey == Aor.HostingUnitKey
-                               select item.Clone()).First();
+            var hostingUnit = dal.Lunit(item => item.HostingUnitKey == Aor.HostingUnitKey);
 
             //throw exeption
-            if (guestReq == null && hostingUnit != null)
-                throw new Exception("The Guest Request Is Not Exiest!");
-            else if (hostingUnit == null && guestReq != null)
-                throw new Exception("The Hosting Unit Is Not Exiest!");
-            else if (hostingUnit == null && guestReq == null)
+            if (hostingUnit == null && guestReq == null)
                 throw new Exception("The Guest Request and Hosting Unit Are Not Exiest!");
+            else if (guestReq == null)
+                throw new Exception("The Guest Request Is Not Exiest!");
+            else if (hostingUnit == null)
+                throw new Exception("The Hosting Unit Is Not Exiest!");
+
+            //checks if the order already exists
+            foreach (var order in dal.Lorder())
+                if (order.HostingUnitKey == Aor.HostingUnitKey && order.GuestRequestKey == Aor.GuestRequestKey)
+                    throw new Exception("The Order already exists [" + order.OrderKey + "]");
 
             if (ApproveReq(Aor))//return true if the guest request approved.
-                return dal.AddOrder(Aor);
+            {
+                dal.AddOrder(Aor);
+                UpdateOrder(Aor, OrderStatus.Sent_Mail);
+                return true;
+            }
             throw new Exception("the date of this order has already been taken... Sorry");
         }
 
 
 
         //Update Order Status
-        public bool UpdateOrder(Order O)
+        public bool UpdateOrder(Order O, OrderStatus status)
         {
-            switch (O.StatusOrder)
+            if (status == OrderStatus.Sent_Mail)
             {
-                case OrderStatus.Sent_Mail:
-                    {
-                        var h = (from item in dal.Lunit
-                                 where item.HostingUnitKey == O.HostingUnitKey
-                                 select item.Clone()).First();
-                        if (h.Owner.CollectionClearance == null)
-                        {
-                            throw new Exception("Owner doesnt have Collection Clearance ");
-                        }
-                        Console.WriteLine("A mail is sent");
-                        dal.UpdateOrder(O);
-                        break;
-                    }
-                case OrderStatus.Closed_from_customer_not_respone:
-                case OrderStatus.Closed_on_customer_response:
-                    {
-                        //calculate the fee for every day
-                        int Cal_fee = CalFee(O);
-                        // mark the days
-                        Mdays(O);
-                        dal.UpdateOrder(O);
-                        foreach (var i in dal.Lorder)
-                        {
-                            if (i.GuestRequestKey == O.GuestRequestKey && i.HostingUnitKey != O.HostingUnitKey)
-                            {
-                                dal.UpdateOrder(O);
-                            }
-                        }
-                        throw new Exception("Cant change the status!!!.");
-                    }
+                try
+                {
+                    SendEmail(O);
+                    return true;
+                }
+                catch (Exception e)
+                {
+
+                    throw e;
+                }
+            }
+
+            if (O.StatusOrder == OrderStatus.Closed_from_customer_not_respone || O.StatusOrder == OrderStatus.Closed_on_customer_response)
+                throw new Exception("Invitation status cannot be changed after it is closed");
+
+            GuestRequest guestRequest_order = dal.GetClientRequest(O.GuestRequestKey);
+            HostingUnit hostingUnit_order = dal.GetHostingUnit(O.HostingUnitKey);
+
+            if (O.StatusOrder == OrderStatus.Closed_on_customer_response)
+            {
+                //checks if the dates are busy because maybe another customer has already closed these dates
+                for (DateTime date = guestRequest_order.EntryDate; date < guestRequest_order.ReleaseDate; date = date.AddDays(1))
+                {
+                    if (hostingUnit_order[date] == true)
+                        throw new Exception("These dates are busy");
+                }
+            }
+
+            dal.UpdateOrder(O.Clone(), status);
+
+            //save the dates
+            if (status == OrderStatus.Closed_from_customer_not_respone)
+            {
+                //calculate the fee for every day
+                int Cal_fee = CalFee(O);
+                // mark the days
+                Mdays(O);
+
+                dal.UpdateClientRequest(guestRequest_order, Request_Status.Closed_by_Web);
+
+                List<Order> allTheCostumerOrders = dal.Lorder(item => item.GuestRequestKey == O.GuestRequestKey);
+                foreach (var order in allTheCostumerOrders)
+                {
+                    if (order.OrderKey != O.OrderKey)
+                        dal.UpdateOrder(order, OrderStatus.Closed_from_customer_not_respone);
+                }
             }
             return true;
         }
 
+        private void SendEmail(Order O)
+        {
+            GuestRequest guestRequest_order = dal.GetClientRequest(O.GuestRequestKey);
+            HostingUnit hostingUnit_order = dal.GetHostingUnit(O.HostingUnitKey);
+            if (hostingUnit_order.Owner.CollectionClearance == false)
+                throw new Exception("Order status cannot be changed without bank account authorization");
+            dal.UpdateOrder(O.Clone(), OrderStatus.Sent_Mail);
+            MailMessage mail = new MailMessage();
+            mail.To.Add(guestRequest_order.MailAddress);
+            mail.From = new MailAddress("xxxxxxx@gmail.com");
+            mail.Subject = "hi";
+            mail.Body = "";
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new NetworkCredential("xxxxxxx@gmail.com", "password");
+            smtp.EnableSsl = true;
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public GuestRequest GetClientRequest(int GKey)
         {
-            var g = (from guest in dal.LGrequest
-                    where guest.GuestRequestKey == GKey
-                    select guest).FirstOrDefault();
-            if (g == null)
-                throw new Exception("Guest with Key [" + GKey + "] does not exist");
-            return g;
+            try
+            {
+                return dal.GetClientRequest(GKey);
+            }
+            catch (Exception arr)
+            {
+                throw arr;
+            }
         }
 
         public HostingUnit GetHostingUnit(int HKey)
         {
-            var h = (from unit in dal.Lunit
-                     where unit.HostingUnitKey == HKey
-                     select unit).FirstOrDefault();
-            if (h == null)
-                throw new Exception("Unit with Key [" + HKey + "] does not exist");
-            return h;
+            try
+            {
+                return dal.GetHostingUnit(HKey);
+            }
+            catch (Exception arr)
+            {
+                throw arr;
+            }
         }
 
         public Order GetOrder(int OKey)
         {
-            var o = (from order in dal.Lorder
-                     where order.OrderKey == OKey
-                     select order).FirstOrDefault();
-            if (o == null)
-                throw new Exception("Unit with Key [" + OKey + "] does not exist");
-            return o;
+            try
+            {
+                return dal.GetOrder(OKey);
+            }
+            catch (Exception arr)
+            {
+                throw arr;
+            }
         }
 
-
-
-        public List<HostingUnit> Lunit()
+        public List<HostingUnit> Lunit(Func<HostingUnit, bool> predicat = null)
         {
-            return dal.Lunit;
+            return dal.Lunit(predicat);
         }
 
-        public List<GuestRequest> LGrequest()
+        public List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null)
         {
-            return dal.LGrequest;
+            return dal.LGrequest(predicat);
         }
 
-        public List<Order> Lorder()
+        public List<Order> Lorder(Func<Order, bool> predicat = null)
         {
-            return dal.Lorder;
+            return dal.Lorder(predicat);
         }
 
         public List<BankBranch> Lbank()
         {
-            return dal.Lbank;
+            return dal.Lbank();
         }
-
-
         //////////////////////Approve///////////////////////
 
         //check if the order is available
         public bool ApproveReq(Order or)
         {
-            var guestReq = (from item in dal.LGrequest
+            var guestReq = (from item in dal.LGrequest()
                             where item.GuestRequestKey == or.GuestRequestKey
                             select item.Clone()).First();
 
-            var hostingUnit = (from item in dal.Lunit
+            var hostingUnit = (from item in dal.Lunit()
                                where item.HostingUnitKey == or.HostingUnitKey
                                select item.Clone()).First();
 
@@ -291,7 +343,7 @@ namespace BL
         // Calculating fee
         public int CalFee(Order O)
         {
-            var g = (from item in dal.LGrequest
+            var g = (from item in dal.LGrequest()
                      where item.GuestRequestKey == O.GuestRequestKey
                      select item.Clone()).First();
             return Configuration.fee * NumOfDays(g.EntryDate, g.ReleaseDate);
@@ -333,36 +385,22 @@ namespace BL
         //Marking the days when closing order
         public void Mdays(Order od)
         {
-            var h = (from item in dal.Lunit
+            var h = (from item in dal.Lunit()
                      where item.HostingUnitKey == od.HostingUnitKey
                      select item.Clone()).First();
 
-            var g = (from item in dal.LGrequest
+            var g = (from item in dal.LGrequest()
                      where item.GuestRequestKey == od.GuestRequestKey
                      select item.Clone()).First();
 
-            int EnterDay = g.EntryDate.Day;
+            DateTime EnterDay = g.EntryDate;
 
-            int EnterMonth = g.EntryDate.Month;
+            DateTime ReleaseDate = g.ReleaseDate;
 
-            int num = NumOfDays(g.EntryDate, g.ReleaseDate);//return num of days
 
-            for (int i = EnterMonth; i < 13; i++)
+            for (DateTime i = EnterDay; i < ReleaseDate; i = i.AddDays(1))
             {
-
-                for (int j = EnterDay; j < 32; j++)
-                {
-                    int counter = 0;
-
-                    if (counter == num)
-                        break;
-
-                    while (counter != num)
-                    {
-                        counter += 1;
-                        h.Diary[i, j] = true;
-                    }
-                }
+                h[i] = true;
             }
         }
 

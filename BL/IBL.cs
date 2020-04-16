@@ -10,20 +10,20 @@ namespace BL
     public interface IBL
     {
         bool AddClientRequest(GuestRequest Grect);
-        bool UpdateClientRequest(GuestRequest Up);
+        bool UpdateClientRequest(GuestRequest Up, Request_Status status);
         bool AddHostingUnit(HostingUnit Hunit);
         bool DeleteHostingUnit(HostingUnit Dunit);
         bool UpdateHostingUnit(HostingUnit Uunit);
         bool AddOrder(Order Aor);
-        bool UpdateOrder(Order Uor);
+        bool UpdateOrder(Order Uor, OrderStatus status);
 
         GuestRequest GetClientRequest(int GKey);
         HostingUnit GetHostingUnit(int HKey);
         Order GetOrder(int OKey);
 
-        List<HostingUnit> Lunit();
-        List<GuestRequest> LGrequest();
-        List<Order> Lorder();
+        List<HostingUnit> Lunit(Func<HostingUnit, bool> predicat = null);
+        List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null);
+        List<Order> Lorder(Func<Order, bool> predicat = null);
         List<BankBranch> Lbank();
     }
 }

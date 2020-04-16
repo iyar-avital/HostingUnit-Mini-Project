@@ -22,11 +22,13 @@ namespace PLWPF.OrderOptions
     public partial class ListOrderToUpdate : Window
     {
         private List<BE.Order> orderL;
+        BE.HostingUnit unit = new BE.HostingUnit();
 
         public ListOrderToUpdate(BE.HostingUnit h)
         {
             InitializeComponent();
 
+            unit = h;
             DataContext = this;
             orderL = MainWindow.BL.Lorder(item => item.HostingUnitKey == h.HostingUnitKey);
             UpdateOrder_Grid.ItemsSource = orderL;
@@ -68,7 +70,7 @@ namespace PLWPF.OrderOptions
 
         private void RefreshData()
         {
-            orderL = MainWindow.BL.Lorder(item => item.HostingUnitKey == h.HostingUnitKey);
+            orderL = MainWindow.BL.Lorder(item => item.HostingUnitKey == unit.HostingUnitKey);
             UpdateOrder_Grid.ItemsSource = orderL;
         }
 
