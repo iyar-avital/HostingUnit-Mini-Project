@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Vacation4U" Height="750" Width="850"  Icon="https://image.flaticon.com/icons/png/128/1086/1086352.png">
     <Grid>
+        <!--THIS IS TEST FOR UPDATE/-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="454*"/>
             <ColumnDefinition Width="150*"/>
