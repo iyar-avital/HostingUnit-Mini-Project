@@ -82,6 +82,9 @@
     <Compile Include="HostingUnitOptions\ViewUnitWindow.xaml.cs">
       <DependentUpon>ViewUnitWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrderOptions\AddOrderWindow.xaml.cs" />
+    <Compile Include="OrderOptions\ListOrderToUpdate.xaml.cs" />
+    <Compile Include="OrderOptions\UpdateOrderWindow.xaml.cs" />
     <Compile Include="UserControls\GuestRequestUserControl.xaml.cs">
       <DependentUpon>GuestRequestUserControl.xaml</DependentUpon>
     </Compile>
