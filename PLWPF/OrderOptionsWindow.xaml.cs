@@ -18,10 +18,10 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for OrderOptions.xaml
     /// </summary>
-    public partial class Order : Window
+    public partial class OrderOptionsWindow : Window
     {
         BE.HostingUnit unit;
-        public Order(BE.HostingUnit h)
+        public OrderOptionsWindow(BE.HostingUnit h)
         {
             InitializeComponent();
             unit = h;

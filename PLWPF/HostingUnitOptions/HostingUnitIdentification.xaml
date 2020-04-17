@@ -1,0 +1,15 @@
+﻿<Window x:Class="PLWPF.HostingUnitOptions.HostingUnitIdentification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF.HostingUnitOptions"
+        mc:Ignorable="d"
+        Title="HostingUnitIdentification" Height="200" Width="400">
+    <Grid>
+        <Label Content="Enter a unit ID number" HorizontalAlignment="Left" Margin="25,34,0,0" VerticalAlignment="Top" Height="36" Width="207"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="112,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Content="continue" HorizontalAlignment="Left" Margin="132,116,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

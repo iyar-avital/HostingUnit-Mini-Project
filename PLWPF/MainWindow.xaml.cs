@@ -43,7 +43,7 @@ namespace WpfUI
 
         private void HostingUnit_Button_Click(object sender, RoutedEventArgs e)
         {
-            new HostingUnit().ShowDialog();
+            new HostingUnitOptionsWindow().ShowDialog();
         }
 
         private void Administrator_Button_Click(object sender, RoutedEventArgs e)

@@ -70,8 +70,14 @@
     <Compile Include="GuestOptions\ViewGuestWindow.xaml.cs">
       <DependentUpon>ViewGuestWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HostingUnitOptionsWindow.xaml.cs">
+      <DependentUpon>HostingUnitOptionsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HostingUnitOptions\AddUnitWindow.xaml.cs">
       <DependentUpon>AddUnitWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HostingUnitOptions\HostingUnitIdentification.xaml.cs">
+      <DependentUpon>HostingUnitIdentification.xaml</DependentUpon>
     </Compile>
     <Compile Include="HostingUnitOptions\PrivateAreaWindow.xaml.cs">
       <DependentUpon>PrivateAreaWindow.xaml</DependentUpon>
@@ -82,6 +88,9 @@
     <Compile Include="HostingUnitOptions\ViewUnitWindow.xaml.cs">
       <DependentUpon>ViewUnitWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrderOptionsWindow.xaml.cs">
+      <DependentUpon>OrderOptionsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrderOptions\AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
     </Compile>
@@ -91,9 +100,6 @@
     <Compile Include="OrderOptions\UpdateOrderWindow.xaml.cs">
       <DependentUpon>UpdateOrderWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OrderOptios.xaml.cs">
-      <DependentUpon>OrderOptios.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\GuestRequestUserControl.xaml.cs">
       <DependentUpon>GuestRequestUserControl.xaml</DependentUpon>
     </Compile>
@@ -102,9 +108,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HostingUnitOptions.xaml.cs">
-      <DependentUpon>HostingUnitOptions.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -160,11 +163,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HostingUnitOptions.xaml">
+    <Page Include="HostingUnitOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HostingUnitOptions\AddUnitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HostingUnitOptions\HostingUnitIdentification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +195,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OrderOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OrderOptions\AddOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,10 +208,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrderOptions\UpdateOrderWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="OrderOptios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

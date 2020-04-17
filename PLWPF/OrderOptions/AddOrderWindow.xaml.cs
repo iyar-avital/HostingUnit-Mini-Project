@@ -20,7 +20,7 @@ namespace PLWPF.OrderOptions
     /// </summary>
     public partial class AddOrderWindow : Window
     {
-        private List<BE.GuestRequest> guestL = MainWindow.BL.LGrequest();
+        private List<BE.GuestRequest> guestL = MainWindow.BL.LGrequest(item => item.StatusRequest == BE.Request_Status.Active);
         BE.Order order;
 
         public AddOrderWindow(BE.HostingUnit hostingUnit)
@@ -43,8 +43,8 @@ namespace PLWPF.OrderOptions
                 (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM";
 
             //Dont show the key
-            //if (propertyDescriptor.DisplayName == "GuestRequestKey")
-            //    e.Cancel = true;
+            if (propertyDescriptor.DisplayName == "GuestRequestKey")
+                e.Cancel = true;
 
             //Rename Headers of Columns
             Dictionary<String, String> Headers = new Dictionary<String, String>

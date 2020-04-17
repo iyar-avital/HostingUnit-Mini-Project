@@ -28,7 +28,6 @@ namespace BE
             str += "Hosting Unit Key: " + HostingUnitKey + "\n" +
                 "Owner \n" + Owner + "\n" +
                 "Hosting Unit Name: " + HostingUnitName + "\n" +
-                Diary.ToString() +
                 "Adults: " + Adults + "\n" +
                 "Children: " + Children + "\n" +
                 "Pool: " + Pool + "\n" +
