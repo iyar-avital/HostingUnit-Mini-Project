@@ -14,7 +14,7 @@ namespace DS
         {
             new HostingUnit
             {
-                HostingUnitKey=00000001,
+                HostingUnitKey=10000001,
                 Owner = new Host
                 {
                     HostKey = 00000002,
@@ -39,7 +39,7 @@ namespace DS
 
             new HostingUnit
             {
-                HostingUnitKey=00000002,
+                HostingUnitKey=10000002,
                 Owner = new Host
                 {
                     HostKey = 00000004,
@@ -164,7 +164,7 @@ namespace DS
         {
             new Order
             {
-                HostingUnitKey = 00000001,
+                HostingUnitKey = 10000001,
                 GuestRequestKey = 10000000,
                 OrderKey = 001,
                 StatusOrder =OrderStatus.Sent_Mail,
@@ -184,7 +184,7 @@ namespace DS
 
             new Order
             {
-                HostingUnitKey = 00000003,
+                HostingUnitKey = 10000001,
                 GuestRequestKey = 30000000,
                 OrderKey = 003,
                 StatusOrder = OrderStatus.Sent_Mail,
