@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:PLWPF.HostingUnitOptions"
         xmlns:uc="clr-namespace:PLWPF.UserControls"
         mc:Ignorable="d"
-        Title="UpdateUnitWindow" Height="450" Width="800">
+        Title="UpdateUnitWindow" Height="500" Width="800">
     <Grid>
-        <uc:HostingUnitUserControl x:Name="unitUserControl"/>
+        <uc:HostingUnitUserControl x:Name="unitUserControl" Loaded="unitUserControl_Loaded"/>
+        <Button Content="Update" Click="Button_Click" HorizontalAlignment="Left" Margin="426,371,0,0" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </Window>

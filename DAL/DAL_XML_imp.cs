@@ -62,34 +62,44 @@ namespace DAL
         {
             throw new NotImplementedException();
         }*/
-        //List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null) ??????
-        public List<GuestRequest> GetAllGuestRequests()
+        public List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null) 
         {
-            return XmlDataSource.LoadFromXML<List<GuestRequest>>(XG.GuestRequestPath);
+            List<GuestRequest> guestRequests = XmlDataSource.LoadFromXML<List<GuestRequest>>(XG.GuestRequestPath);
+            
+            if(predicat == null) return guestRequests;
+            var v = from item in guestRequests
+                    where predicat(item) == true
+                    select item.Clone();
+            return v.ToList();
         }
-        //List<HostingUnit> Lunit(Func<HostingUnit, bool> predicat = null) ??????
-        public List<HostingUnit> GetAllHostingUnits()
+        public List<HostingUnit> Lunit(Func<HostingUnit, bool> predicat = null)
         {
-            return XmlDataSource.LoadFromXML<List<HostingUnit>>(HostingUnitPath);
+            List<HostingUnit> hostingUnits = XmlDataSource.LoadFromXML<List<HostingUnit>>(HostingUnitPath);
+            if (predicat == null) return hostingUnits;
+            var v = from item in hostingUnits
+                    where predicat(item) == true
+                    select item.Clone();
+            return v.ToList();
         }
-        //List<Order> Lorder(Func<Order, bool> predicat = null) ???????
-        public List<Order> GetAllOrders()
+        public List<Order> Lorder(Func<Order, bool> predicat = null)
         {
-            return XO.GetAllOrders();
+            List<Order> orders = XO.GetAllOrders();
+            if (predicat == null) return orders;
+            var v = from item in orders
+                    where predicat(item) == true
+                    select item.Clone();
+            return v.ToList();
         }
         public GuestRequest GetClientRequest(int GKey)
-        //public GuestRequest GetGuestRequest(long key)
         {
             return XG.GetGuestRequest(GKey);
         }
         public HostingUnit GetHostingUnit(int HKey)
-        //public HostingUnit GetHostingUnit(long key)
         {
             return XmlDataSource.LoadFromXML<List<HostingUnit>>(HostingUnitPath).Where(item => item.HostingUnitKey == HKey).FirstOrDefault();
             //XH.GetHostingUnit(key);
         }
         public Order GetOrder(int OKey)
-        //public Order GetOrder(long key)
         {
             return XO.GetOrder(OKey);
         }
@@ -153,7 +163,6 @@ namespace DAL
         }
 
         public bool DeleteHostingUnit(HostingUnit Dunit)
-        //public void RemoveUnit(HostingUnit hostingUnit)
         {
             List<HostingUnit> lis = XmlDataSource.LoadFromXML<List<HostingUnit>>(HostingUnitPath);
             lis.RemoveAll(item => item.HostingUnitKey == Dunit.HostingUnitKey);
@@ -166,7 +175,6 @@ namespace DAL
             XO.UpdateAllOrdersOfGuestRequest(order);
         }
         public bool UpdateOrder(Order Uor, OrderStatus status)
-        //public void UpdateOrder(Order order)
         {
             Uor.StatusOrder = status;
             XO.UpdateOrder(Uor);
@@ -174,14 +182,12 @@ namespace DAL
         }
 
         public bool UpdateClientRequest(GuestRequest guestRequest, Request_Status request_Status)
-        //public void UpdateRequest(GuestRequest guestRequest)
         {
             guestRequest.StatusRequest = request_Status;
             XG.UpdateRequest(guestRequest);
             return true;
         }
         public bool UpdateHostingUnit(HostingUnit Uunit)
-        //public void UpdateUnit(HostingUnit hostingUnit)
         {
             List<HostingUnit> lis = XmlDataSource.LoadFromXML<List<HostingUnit>>(HostingUnitPath);
             HostingUnit unit = lis.FirstOrDefault(item => item.HostingUnitKey == Uunit.HostingUnitKey);
@@ -200,9 +206,9 @@ namespace DAL
         public void initilizeListToXml()
         {
             XmlDataSource.SaveToXML<List<HostingUnit>>(DataSource.ListHostingUnits, HostingUnitPath);
-            // XmlDataSource.SaveToXML<List<GuestRequest>>(DataSource.GuestRequestsCollection ,XG.GuestRequestPath);
-            //XmlDataSource.SaveToXML<List<Order>>(DataSource.OrdersCollection,XO.OrderPath);
-            //XC.AddConfiguration();
+            XmlDataSource.SaveToXML<List<GuestRequest>>(DataSource.ListGuestRequest ,XG.GuestRequestPath);
+            XmlDataSource.SaveToXML<List<Order>>(DataSource.ListOrder,XO.OrderPath);
+            XC.AddConfiguration();
         }
 
         public void SetMailAndPasswordToConfiguration(string mail, string password)
@@ -250,7 +256,7 @@ namespace DAL
         {
             return XC.GetConfiguration<string>("Msg");
         }
-        
+        /*
         public List<HostingUnit> Lunit(Func<HostingUnit, bool> predicat = null)
         {
             throw new NotImplementedException();
@@ -265,7 +271,7 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
-        
+        */
         public List<BankBranch> Lbank()
         {
             throw new NotImplementedException();

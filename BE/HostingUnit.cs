@@ -3,24 +3,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Utilities;
 
 namespace BE
 {
     public class HostingUnit
     {
+        [XmlElement("HostingUnitKey")]
         public int HostingUnitKey { get; set; }
+        [XmlElement("Owner")]
         public Host Owner { get; set; }
+        [XmlElement("HostingUnitName")]
         public string HostingUnitName { get; set; }
+        [XmlIgnore]
         public bool[,] Diary { get; set; }
+        [XmlArray(ElementName = "Diary")]
+        [XmlArrayItem(ElementName = "item")]
+        public bool[] DiaryDto
+        {
+            get { return Diary.Flatten(); }
+            set { Diary = value.Expand(10); }
+        }
+
+
+
+
+        [XmlElement("Area")]
         public Areas Area { get; set; }
+        [XmlElement("Type")]
         public Type_Unit Type { get; set; }
+        [XmlElement("Adults")]
         public int Adults { get; set; }
+        [XmlElement("Rooms")]
         public int Rooms { get; set; }
+        [XmlElement("Children")]
         public int Children { get; set; }
+        [XmlElement("Pool")]
         public bool Pool { get; set; }
+        [XmlElement("Jacuzzi")]
         public bool Jacuzzi { get; set; }
+        [XmlElement("Garden")]
         public bool Garden { get; set; }
+        [XmlElement("ChildrensAttractions")]
         public bool ChildrensAttractions { get; set; }
+
+
+        
+
+
+
+
 
         public override string ToString()
         {

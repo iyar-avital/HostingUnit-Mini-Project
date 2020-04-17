@@ -181,14 +181,19 @@ namespace BL
             dal.UpdateOrder(O.Clone(), OrderStatus.Sent_Mail);
             MailMessage mail = new MailMessage();
             mail.To.Add(guestRequest_order.MailAddress);
-            mail.From = new MailAddress("xxxxxxx@gmail.com");
-            mail.Subject = "hi";
-            mail.Body = "";
+            mail.From = new MailAddress(dal.GetMail());
+            mail.Subject = "הזמנה ליחידת אירוח " + O.HostingUnitKey;
+            mail.Body = "<div>" +
+                         "<p1>הזמנה ליחידת אירוח " + O.HostingUnitKey + "</p1>" +
+                         "<div>הזמנה מספר " + O.OrderKey + "</div>" +
+                         "</div>";
+
+                         
             mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential("xxxxxxx@gmail.com", "password");
+            smtp.Credentials = new NetworkCredential(dal.GetMail(), dal.GetPassword());//"xxxxxxx@gmail.com", "password");
             smtp.EnableSsl = true;
             try
             {
@@ -403,7 +408,11 @@ namespace BL
             }
         }
 
-        
+        public void initXmls()
+        {
+            dal.initilizeListToXml();
+        }
+
     }
 }
 

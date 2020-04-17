@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfUI;
 
 namespace PLWPF.HostingUnitOptions
 {
@@ -19,12 +20,36 @@ namespace PLWPF.HostingUnitOptions
     /// </summary>
     public partial class UpdateUnitWindow : Window
     {
-        public BE.HostingUnit guest { get; set; } = new BE.HostingUnit();
+        public BE.HostingUnit unit { get; set; } = new BE.HostingUnit();
         public UpdateUnitWindow()
         {
             InitializeComponent();
-            unitUserControl.DataContext = guest;
+            unitUserControl.DataContext = unit;
             unitUserControl.IsEnabled = true;
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                MainWindow.BL.UpdateHostingUnit(unitUserControl.hu);
+                MessageBoxResult result = MessageBox.Show("[Key:" + unitUserControl.hu.HostingUnitKey + "] Unit has been updated.\n\nWould you like to close this window?", "System", MessageBoxButton.YesNo, MessageBoxImage.Hand);
+                if (result.Equals(MessageBoxResult.Yes))
+                    this.Close();
+                //MessageBox.Show(hu.ToString());
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error");
+            }
+
+        }
+
+        private void unitUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 

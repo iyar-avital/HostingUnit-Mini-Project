@@ -21,27 +21,13 @@ namespace PLWPF.UserControls
     /// </summary>
     public partial class HostingUnitUserControl : UserControl
     {
-        public static BE.HostingUnit hu = new BE.HostingUnit();
+        public BE.HostingUnit hu = new BE.HostingUnit();
         public HostingUnitUserControl()
         {
             DataContext = hu;
             InitializeComponent();
         }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            try
-            {
-                MainWindow.BL.UpdateHostingUnit(hu);
-                //MessageBox.Show(hu.ToString());
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message, "Error");
-            }
-
-        }
+        
     }
 }

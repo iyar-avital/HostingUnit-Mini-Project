@@ -151,5 +151,19 @@ namespace DAL
         }
 
 
+        public string GetMail()
+        {
+            return Configuration.mailAddress.Address;// XC.GetConfiguration<string>("mailAddress");
+        }
+
+        public string GetPassword()
+        {
+            return Configuration.Password; //XC.GetConfiguration<string>("Password");
+        }
+
+        public void initilizeListToXml()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

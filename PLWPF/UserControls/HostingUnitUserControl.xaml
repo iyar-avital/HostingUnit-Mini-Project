@@ -25,10 +25,10 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="206,334,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="206,414,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchAddress, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
 
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,256,0,0" TextWrapping="Wrap" Text="{Binding Path=Type, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,153,0,0" TextWrapping="Wrap" Text="{Binding Path=Type, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="212,67,0,0" TextWrapping="Wrap" Text="{Binding Path=Children, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,135,0,0" TextWrapping="Wrap" Text="{Binding Path=Area, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,110,0,0" TextWrapping="Wrap" Text="{Binding Path=Area, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
         <!--Labels-->
         <Label Content="Private Name" HorizontalAlignment="Left" Margin="44,25,0,0" VerticalAlignment="Top"/>
         <Label Content="Family Name" HorizontalAlignment="Left" Margin="44,64,0,0" VerticalAlignment="Top"/>
@@ -40,11 +40,11 @@
         <Label Content="Branch Number" HorizontalAlignment="Left" Margin="44,331,0,0" VerticalAlignment="Top"/>
         <Label Content="Branch City" HorizontalAlignment="Left" Margin="44,365,0,0" VerticalAlignment="Top"/>
         <Label Content="Branch Address" HorizontalAlignment="Left" Margin="45,411,0,0" VerticalAlignment="Top"/>
-        <Label Content="Children" HorizontalAlignment="Left" Margin="63,64,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Children" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="-0.111,0.5"/>
         <Label Content="Adults" HorizontalAlignment="Left" Margin="55,22,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="72,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.829,-1.154" Grid.Column="1"/>
-        <Label Content="Area" HorizontalAlignment="Left" Margin="73,132,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Separator HorizontalAlignment="Left" Height="94" Margin="214,130,0,0" VerticalAlignment="Top" Width="336" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+        <Label Content="Type" HorizontalAlignment="Left" Margin="55,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.829,-1.154" Grid.Column="1"/>
+        <Label Content="Area" HorizontalAlignment="Left" Margin="55,107,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Separator HorizontalAlignment="Left" Height="94" Margin="166,178,0,0" VerticalAlignment="Top" Width="432" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
             <Separator.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -54,6 +54,5 @@
                 </TransformGroup>
             </Separator.RenderTransform>
         </Separator>
-        <Button Content="Click" Click="Button_Click" HorizontalAlignment="Left" Margin="55,371,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
     </Grid>
 </UserControl>

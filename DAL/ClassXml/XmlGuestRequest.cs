@@ -59,7 +59,7 @@ namespace DAL.ClassXml
                     new XElement("GuestRequestKey", key),
                     new XElement("PrivateName", guestRequest.PrivateName),
                     new XElement("FamilyName", guestRequest.FamilyName),
-                    new XElement("MailAdress", guestRequest.MailAddress),
+                    new XElement("MailAddress", guestRequest.MailAddress),
                     new XElement("Status", guestRequest.StatusRequest),
                     new XElement("RegistrationDate", guestRequest.RegistrationDate),
                     new XElement("EntryDate", guestRequest.EntryDate),
@@ -88,7 +88,7 @@ namespace DAL.ClassXml
                                       GuestRequestKey = Convert.ToInt32(p.Element("GuestRequestKey").Value),
                                       PrivateName = p.Element("PrivateName").Value,
                                       FamilyName = p.Element("FamilyName").Value,
-                                      MailAddress = p.Element("MailAdress").Value,
+                                      MailAddress = p.Element("MailAddress").Value,
                                       StatusRequest = (Request_Status)Enum.Parse(typeof(Request_Status), p.Element("Status").Value),
                                       RegistrationDate = DateTime.Parse(p.Element("RegistrationDate").Value),
                                       EntryDate = DateTime.Parse(p.Element("EntryDate").Value),
@@ -115,7 +115,7 @@ namespace DAL.ClassXml
             XElement xElement = GuestRequestRoot.Elements().Where(item => Convert.ToInt32(item.Element("GuestRequestKey").Value) == guestRequest.GuestRequestKey).FirstOrDefault();
             xElement.Element("PrivateName").SetValue(guestRequest.PrivateName);
             xElement.Element("FamilyName").SetValue(guestRequest.FamilyName);
-            xElement.Element("MailAdress").SetValue(guestRequest.MailAddress);
+            xElement.Element("MailAddress").SetValue(guestRequest.MailAddress);
             xElement.Element("Status").SetValue(guestRequest.StatusRequest);
             xElement.Element("RegistrationDate").SetValue(guestRequest.RegistrationDate);
             xElement.Element("EntryDate").SetValue(guestRequest.EntryDate);
