@@ -32,13 +32,21 @@ namespace PLWPF.HostingUnitOptions
         private void UpdateUnitBtn_Click(object sender, RoutedEventArgs e)
         {
             UpdateUnitWindow editUnit = new UpdateUnitWindow();
+           
             editUnit.unitUserControl.DataContext = unit;
             editUnit.ShowDialog();
         }
 
         private void OrdersAreaBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Orders Area");
+            //Just fo test
+            unit = MainWindow.BL.GetHostingUnit(00000001);
+            OrderOptionsWindow listOrdersW = new OrderOptionsWindow(unit);
+            MessageBox.Show(unit.ToString());
+            listOrdersW.ShowDialog();
+
+
+           
         }
 
         private void DeleteUnitBtn_Click(object sender, RoutedEventArgs e)

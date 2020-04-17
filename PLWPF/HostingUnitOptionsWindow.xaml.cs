@@ -18,9 +18,9 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for HostingUnit.xaml
     /// </summary>
-    public partial class HostingUnit : Window
+    public partial class HostingUnitOptionsWindow : Window
     {
-        public HostingUnit()
+        public HostingUnitOptionsWindow()
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace PLWPF
 
         private void PrivateAreaDialog_Button(object sender, RoutedEventArgs e)
         {
-            new PrivateAreaWindow().ShowDialog();
+            new HostingUnitIdentification().ShowDialog();
         }
         /*
         public void ShowMyDialogBox()

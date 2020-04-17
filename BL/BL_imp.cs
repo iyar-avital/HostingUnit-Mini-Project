@@ -160,7 +160,6 @@ namespace BL
                 int Cal_fee = CalFee(O);
                 // mark the days
                 Mdays(O);
-
                 dal.UpdateClientRequest(guestRequest_order, Request_Status.Closed_by_Web);
 
                 List<Order> allTheCostumerOrders = dal.Lorder(item => item.GuestRequestKey == O.GuestRequestKey);
