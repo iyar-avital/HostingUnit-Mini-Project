@@ -157,7 +157,7 @@ namespace BL
             if (status == OrderStatus.Closed_from_customer_not_respone)
             {
                 //calculate the fee for every day
-                int Cal_fee = CalFee(O);
+                float Cal_fee = CalFee(O);
                 // mark the days
                 Mdays(O);
 
@@ -341,7 +341,7 @@ namespace BL
         //////////////////////Calculating///////////////////////
 
         // Calculating fee
-        public int CalFee(Order O)
+        public float CalFee(Order O)
         {
             var g = (from item in dal.LGrequest()
                      where item.GuestRequestKey == O.GuestRequestKey

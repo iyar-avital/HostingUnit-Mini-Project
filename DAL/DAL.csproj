@@ -42,8 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ClassXml\XmlBankBranch.cs" />
+    <Compile Include="ClassXml\XmlConfiguration.cs" />
+    <Compile Include="ClassXml\XmlGuestRequest.cs" />
+    <Compile Include="ClassXml\XmlHostingUnit.cs" />
+    <Compile Include="ClassXml\XmlOrder.cs" />
     <Compile Include="Cloning.cs" />
     <Compile Include="Dal_imp.cs" />
+    <Compile Include="DAL_XML_imp.cs" />
     <Compile Include="FactoryDal.cs" />
     <Compile Include="Idal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
