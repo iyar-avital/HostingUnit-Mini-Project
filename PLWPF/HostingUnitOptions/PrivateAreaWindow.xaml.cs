@@ -22,10 +22,10 @@ namespace PLWPF.HostingUnitOptions
     public partial class PrivateAreaWindow : Window
     {
         public BE.HostingUnit unit { get; set; } = new BE.HostingUnit();
-        public PrivateAreaWindow()
+        public PrivateAreaWindow(BE.HostingUnit hostingUnit)
         {
             InitializeComponent();
-
+            unit = hostingUnit;
             
         }
 
@@ -39,10 +39,8 @@ namespace PLWPF.HostingUnitOptions
 
         private void OrdersAreaBtn_Click(object sender, RoutedEventArgs e)
         {
-            //Just fo test
-            unit = MainWindow.BL.GetHostingUnit(00000001);
             OrderOptionsWindow listOrdersW = new OrderOptionsWindow(unit);
-            MessageBox.Show(unit.ToString());
+            //MessageBox.Show(unit.ToString());
             listOrdersW.ShowDialog();
 
 

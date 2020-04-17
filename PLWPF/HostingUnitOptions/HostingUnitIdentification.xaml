@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="HostingUnitIdentification" Height="200" Width="400">
     <Grid>
-        <Label Content="Enter a unit ID number" HorizontalAlignment="Left" Margin="25,34,0,0" VerticalAlignment="Top" Height="36" Width="207"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="112,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button Content="continue" HorizontalAlignment="Left" Margin="132,116,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Enter a unit ID number (8 digits)" HorizontalAlignment="Left" Margin="25,34,0,0" VerticalAlignment="Top" Height="36" Width="207"/>
+        <Button Name="Continue_button" Content="continue" HorizontalAlignment="Left" Margin="132,116,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="Continue_button_Click"/>
+        <PasswordBox Name="UnitPassword" InputScope="Number" MaxLength="8" HorizontalAlignment="Left" Margin="92,80,0,0" VerticalAlignment="Top" Height="31" Width="166" PasswordChanged="UnitPassword_PasswordChanged"/>
 
     </Grid>
 </Window>
