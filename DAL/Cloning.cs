@@ -39,6 +39,8 @@ namespace DAL
             t.StatusRequest = g.StatusRequest;
             t.SubArea = g.SubArea;
             t.Type = g.Type;
+
+            
             return t;
         }
 
@@ -46,13 +48,14 @@ namespace DAL
         {
             Host t = new Host();
             t.BankAccountNumber = h.BankAccountNumber;
-            t.BankBranchDetails = h.BankBranchDetails;
+            t.BankBranchDetails = h.BankBranchDetails.Clone();
             t.CollectionClearance = h.CollectionClearance;
             t.FamilyName = h.FamilyName;
             t.PhoneNumber = h.PhoneNumber;
             t.HostKey = h.HostKey;
             t.MailAddress = h.MailAddress;
             t.PrivateName = h.PrivateName;
+            
             return t;
         }
 
@@ -62,7 +65,17 @@ namespace DAL
             t.Diary = u.Diary;
             t.HostingUnitKey = u.HostingUnitKey;
             t.HostingUnitName = u.HostingUnitName;
-            t.Owner = u.Owner;
+            t.Owner = u.Owner.Clone();
+            t.Area = u.Area;
+            t.Adults = u.Adults;
+            t.Children = u.Children;
+            t.Garden = u.Garden;
+            t.Jacuzzi = u.Jacuzzi;
+            t.Pool = u.Pool;
+            t.Rooms = u.Rooms;
+            t.Type = u.Type;
+            t.ChildrensAttractions = u.ChildrensAttractions;
+            
             return t;
         }
         public static Order Clone(this Order o)

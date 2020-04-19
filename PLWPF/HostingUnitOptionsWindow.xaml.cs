@@ -32,6 +32,10 @@ namespace PLWPF
 
         private void PrivateAreaDialog_Button(object sender, RoutedEventArgs e)
         {
+            /*HostingUnitIdentification unitIdentification = new HostingUnitIdentification();
+            
+            .ShowDialog();
+            */
             new HostingUnitIdentification().ShowDialog();
         }
         /*

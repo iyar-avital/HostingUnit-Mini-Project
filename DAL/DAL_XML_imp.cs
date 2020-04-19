@@ -16,7 +16,7 @@ namespace DAL
     public class DAL_XML_imp : Idal
     {
         XmlOrder XO = FactorySingletonXmlOrder.GetXmlOrder();
-        //XmlHostingUnit XH = FactorySingletonXmlHostingUnit.GetXmlHostingUnit();
+        XmlHostingUnit XH = FactorySingletonXmlHostingUnit.GetXmlHostingUnit();
         XmlGuestRequest XG = FactorySingletonXmlGuestRequest.GetXmlGuestRequest();
         public XmlConfiguration XC = FactorySingletonXmlConfiguration.GetXmlConfiguration();
         XmlBankBranch XB = FactorySingletonXmlBankBranch.GetXmlBankBranch();
@@ -44,8 +44,10 @@ namespace DAL
         {
             HostingUnit hostingUnitCopy = (HostingUnit)hostingUnit.Clone();
             hostingUnitCopy.HostingUnitKey = XC.GetConfiguration<int>("HostUnitKey");
-            DataSource.ListHostingUnits.Add(hostingUnitCopy);
-            XmlDataSource.SaveToXML<List<HostingUnit>>(DataSource.ListHostingUnits, HostingUnitPath);
+            List<HostingUnit> unitList = Lunit();
+            //DataSource.ListHostingUnits.Add(hostingUnitCopy);
+            unitList.Add(hostingUnitCopy);
+            XmlDataSource.SaveToXML<List<HostingUnit>>(unitList, HostingUnitPath);
             XC.UpdateConfiguration<int>("HostUnitKey", (hostingUnitCopy.HostingUnitKey + 1));
             //return hostingUnitCopy.HostingUnitKey;
             return true;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,14 @@ namespace PLWPF.UserControls
     /// </summary>
     public partial class HostingUnitUserControl : UserControl
     {
-        public BE.HostingUnit hu = new BE.HostingUnit();
+        public HostingUnit hu = new HostingUnit() {Diary = new bool[13,32], Owner = new Host() { BankBranchDetails = new BankBranch() } };
         public HostingUnitUserControl()
         {
             DataContext = hu;
             InitializeComponent();
+
+            AreaBox.ItemsSource = Enum.GetValues(typeof(Areas));
+            TypeBox.ItemsSource = Enum.GetValues(typeof(Type_Unit));
         }
 
         

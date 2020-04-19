@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfUI;
 
 namespace PLWPF.GuestOptions
 {
@@ -22,6 +23,22 @@ namespace PLWPF.GuestOptions
         public AddGuestWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                guestUserControl.gs.RegistrationDate = DateTime.Now;
+                MainWindow.BL.AddClientRequest(guestUserControl.gs);
+                MessageBox.Show("Guest request has been added", "System", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "System", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
     }
 }

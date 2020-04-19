@@ -22,26 +22,37 @@ namespace PLWPF.UserControls
     /// </summary>
     public partial class GuestRequestUserControl : UserControl
     {
-        public static GuestRequest gs = new GuestRequest();
+        public GuestRequest gs = new GuestRequest() {EntryDate = DateTime.Today, ReleaseDate = DateTime.Today.AddDays(1) };
         public GuestRequestUserControl()
         {
             DataContext = gs;
             InitializeComponent();
+
+            AreaBox.ItemsSource = Enum.GetValues(typeof(Areas));
+            SubAreaBox.ItemsSource = Enum.GetValues(typeof(Request_SubArea));
+            TypeBox.ItemsSource = Enum.GetValues(typeof(Type_Unit));
+
+
+
+            EntryDateDP.DisplayDateStart = DateTime.Today;
+            EntryDateDP.DisplayDateEnd = DateTime.Today.AddYears(1).AddDays(-2);
+            //EntryDateDP.SelectedDate = DateTime.Today;
+
+            LeaveDateDP.DisplayDateStart = DateTime.Today.AddDays(1);
+            LeaveDateDP.DisplayDateEnd = DateTime.Today.AddYears(1).AddDays(-1);
+            //EntryDateDP.SelectedDate = DateTime.Today;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+
+        private void EntryDateDP_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            try
-            {
-                MainWindow.BL.AddClientRequest(gs);
-                MessageBox.Show(gs.ToString());
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message, "Error");
-            }
-
+            if (LeaveDateDP == null)
+                return;
+            LeaveDateDP.DisplayDateStart = EntryDateDP.SelectedDate.Value.AddDays(1);
+            LeaveDateDP.SelectedDate = null;
+            LeaveDateDP.IsDropDownOpen = true;
+            LeaveDateDP.Focus();
         }
     }
 }

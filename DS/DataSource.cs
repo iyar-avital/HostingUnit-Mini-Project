@@ -17,7 +17,7 @@ namespace DS
                 HostingUnitKey=10000001,
                 Owner = new Host
                 {
-                    HostKey = 00000002,
+                    HostKey = 00000001,
                     PrivateName="Yoosi",
                     FamilyName = "Cohen",
                     PhoneNumber = 0509876543,
@@ -42,7 +42,7 @@ namespace DS
                 HostingUnitKey=10000002,
                 Owner = new Host
                 {
-                    HostKey = 00000004,
+                    HostKey = 00000002,
                     PrivateName="Yaron",
                     FamilyName = "fox",
                     PhoneNumber = 0509996543,
@@ -66,11 +66,11 @@ namespace DS
 
             new HostingUnit
             {
-                HostingUnitKey=00000003,
+                HostingUnitKey=10000003,
 
                 Owner =new Host
                 {
-                    HostKey = 00000006,
+                    HostKey = 00000003,
                     PrivateName="Shir",
                     FamilyName = "Saon",
                     PhoneNumber = 0509876543,
@@ -97,7 +97,7 @@ namespace DS
         {
             new GuestRequest
             {
-                GuestRequestKey = 10000000,
+                GuestRequestKey = 20000001,
                 PrivateName = "Yael",
                 FamilyName = "Gold",
                 MailAddress = "iyaravital@gamil.com",
@@ -118,7 +118,7 @@ namespace DS
 
             new GuestRequest
             {
-                GuestRequestKey = 20000000,
+                GuestRequestKey = 20000002,
                 PrivateName = "Shira",
                 FamilyName = "Hadar",
                 MailAddress = "iyaravital@gamil.com",
@@ -139,7 +139,7 @@ namespace DS
 
             new GuestRequest
             {
-                GuestRequestKey = 30000000,
+                GuestRequestKey = 20000003,
                 PrivateName = "Noa",
                 FamilyName = "Halfon",
                 MailAddress = "iyaravital@gamil.com",
@@ -165,8 +165,8 @@ namespace DS
             new Order
             {
                 HostingUnitKey = 10000001,
-                GuestRequestKey = 10000000,
-                OrderKey = 001,
+                GuestRequestKey = 20000001,
+                OrderKey = 30000001,
                 StatusOrder =OrderStatus.Sent_Mail,
                 CreateDate = new DateTime(2020, 2, 10),
                 OrderDate = new DateTime(2020, 3, 10),
@@ -174,9 +174,9 @@ namespace DS
 
             new Order
             {
-                HostingUnitKey = 00000002,
-                GuestRequestKey = 20000000,
-                OrderKey = 002,
+                HostingUnitKey = 10000002,
+                GuestRequestKey = 20000002,
+                OrderKey = 30000002,
                 StatusOrder = OrderStatus.Sent_Mail,
                 CreateDate = new DateTime(2020, 4, 20),
                 OrderDate = new DateTime(2020, 4, 23),
@@ -184,9 +184,9 @@ namespace DS
 
             new Order
             {
-                HostingUnitKey = 10000001,
-                GuestRequestKey = 30000000,
-                OrderKey = 003,
+                HostingUnitKey = 10000003,
+                GuestRequestKey = 20000003,
+                OrderKey = 30000003,
                 StatusOrder = OrderStatus.Sent_Mail,
                 CreateDate = new DateTime(2020, 3, 1),
                 OrderDate = new DateTime(2020, 3, 15),

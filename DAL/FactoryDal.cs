@@ -11,7 +11,7 @@ namespace DAL
         static Idal instance=null;
         public static Idal getDal()
         {
-            if (instance == null )
+            if (instance == null)
                 instance = new Dal_imp();
             return instance;
         }

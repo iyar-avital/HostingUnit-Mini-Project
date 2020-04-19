@@ -14,13 +14,8 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="130,25,0,0" TextWrapping="Wrap" Text="{Binding Path=PrivateName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="130,111,0,0" TextWrapping="Wrap" Text="{Binding Path=MailAddress, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="55,25,0,0" TextWrapping="Wrap" Text="{Binding Path=Adults, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="130,198,0,0" TextWrapping="Wrap" Text="{Binding Path=ReleaseDate, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="130,324,0,0" TextWrapping="Wrap" Text="{Binding Path=Type, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="130,154,0,0" TextWrapping="Wrap" Text="{Binding Path=EntryDate, Mode=TwoWay}" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.11,0.714"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="130,68,0,0" TextWrapping="Wrap" Text="{Binding Path=FamilyName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="55,68,0,0" TextWrapping="Wrap" Text="{Binding Path=Children, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="130,279,0,0" TextWrapping="Wrap" Text="{Binding Path=SubArea, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="130,236,0,0" TextWrapping="Wrap" Text="{Binding Path=Area, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Children" HorizontalAlignment="Left" Margin="344,68,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Adults" HorizontalAlignment="Left" Margin="344,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="47,320,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.829,-1.154"/>
@@ -41,6 +36,12 @@
                 </TransformGroup>
             </Separator.RenderTransform>
         </Separator>
-        <Button Content="Click" Click="Button_Click" HorizontalAlignment="Left" Margin="55,371,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+        
+        <ComboBox Name="AreaBox" HorizontalAlignment="Left" SelectedValue="{Binding Path=Area}" Margin="130,236,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="SubAreaBox" HorizontalAlignment="Left" SelectedValue="{Binding Path=SubArea}" Margin="130,279,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="TypeBox" HorizontalAlignment="Left" SelectedValue="{Binding Path=Type}" Margin="130,324,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker Name="EntryDateDP" SelectedDate="{Binding Path=EntryDate, Mode=TwoWay}" HorizontalAlignment="Left" Margin="130,152,0,0" VerticalAlignment="Top" SelectedDateChanged="EntryDateDP_SelectedDateChanged" Width="120"/>
+        <DatePicker Name="LeaveDateDP" SelectedDate="{Binding Path=ReleaseDate, Mode=TwoWay}" HorizontalAlignment="Left" Margin="130,198,0,0" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </UserControl>

@@ -84,7 +84,9 @@ namespace PLWPF
             //Rename Headers of Columns
             Dictionary<String, String> Headers = new Dictionary<String, String>
             {
-                { "HostingUnitKey", "Key" },
+                { "HostingUnitKey", "Unit Key" },
+                { "OrderKey", "Order Key" },
+                { "GuestRequestKey", "Request Key" },
                 { "HostingUnitName", "Name" },
                 { "ChildrensAttractions", "Attractions" },
 
@@ -111,10 +113,10 @@ namespace PLWPF
 
         private void ViewSelectedItem(object selectedItem)
         {
-            if (selectedItem is BE.HostingUnit)
+            if (selectedItem is HostingUnit)
             {
                 ViewUnitWindow viewUnit = new ViewUnitWindow();
-                viewUnit.unitUserControl.DataContext = (BE.HostingUnit)selectedItem;
+                viewUnit.unitUserControl.DataContext = (HostingUnit)selectedItem;
                 viewUnit.ShowDialog();
             }
             else if (selectedItem is GuestRequest)
@@ -129,11 +131,12 @@ namespace PLWPF
 
         private void EditSelectedItem(object selectedItem)
         {
-            if (selectedItem is BE.HostingUnit)
+            if (selectedItem is HostingUnit)
             {
-                UpdateUnitWindow editUnit = new UpdateUnitWindow();
-                editUnit.unitUserControl.DataContext = (BE.HostingUnit)selectedItem;
+                UpdateUnitWindow editUnit = new UpdateUnitWindow(((HostingUnit)selectedItem).HostingUnitKey);
+                //editUnit.unitUserControl.DataContext = (BE.HostingUnit)selectedItem;
                 editUnit.ShowDialog();
+                RefreshUnits();
             }
             else if (selectedItem is Order)
                 MessageBox.Show("Order");

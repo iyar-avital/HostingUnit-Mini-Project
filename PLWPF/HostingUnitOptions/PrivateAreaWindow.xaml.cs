@@ -31,9 +31,9 @@ namespace PLWPF.HostingUnitOptions
 
         private void UpdateUnitBtn_Click(object sender, RoutedEventArgs e)
         {
-            UpdateUnitWindow editUnit = new UpdateUnitWindow();
+            UpdateUnitWindow editUnit = new UpdateUnitWindow(unit.HostingUnitKey);
            
-            editUnit.unitUserControl.DataContext = unit;
+            //editUnit.unitUserControl.DataContext = unit;
             editUnit.ShowDialog();
         }
 

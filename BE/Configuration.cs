@@ -15,9 +15,9 @@ namespace BE
         public static int NumDaysUntillExpired = 3; // מספר ימי תוקף הזמנה
         public static float fee = 10f;
 
-        public static int guestRequestKeySeq = 10000000;
-        public static int HostingUnitKeySeq = 10000000;
-        public static int OrderKeySeq = 10000000;
+        public static int HostingUnitKeySeq = 10000004;
+        public static int guestRequestKeySeq = 20000004;
+        public static int OrderKeySeq = 30000004;
 
         
         public static MailAddress mailAddress;

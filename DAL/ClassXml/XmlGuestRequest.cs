@@ -53,7 +53,7 @@ namespace DAL.ClassXml
 
         public long AddRequest(GuestRequest guestRequest)
         {
-            long key = XC.GetConfiguration<long>("GuestRequestKey");
+            long key = XC.GetConfiguration<int>("GuestRequestKey");
             GuestRequestRoot.Add(
                 new XElement("GuestRequest",
                     new XElement("GuestRequestKey", key),

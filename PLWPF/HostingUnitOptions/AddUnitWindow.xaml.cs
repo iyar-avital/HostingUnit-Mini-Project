@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfUI;
 
 namespace PLWPF.HostingUnitOptions
 {
@@ -22,6 +23,20 @@ namespace PLWPF.HostingUnitOptions
         public AddUnitWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MainWindow.BL.AddHostingUnit(unitUserControl.hu);
+                MessageBox.Show("Hosting Unit has been added", "System", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show(err.Message, "System", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

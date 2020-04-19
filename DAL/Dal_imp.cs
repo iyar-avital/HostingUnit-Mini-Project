@@ -55,11 +55,11 @@ namespace DAL
         //GuestRequest:
         public bool AddClientRequest(GuestRequest Grect)
         {
-            if (DataSource.ListGuestRequest.Exists(item => item.GuestRequestKey == Grect.GuestRequestKey) == true)
-
+            if (Grect.GuestRequestKey != 0 && DataSource.ListGuestRequest.Exists(item => item.GuestRequestKey == Grect.GuestRequestKey) == true)
                 throw new Exception("Guest Request with the same number already exists.");
-            else
-                DataSource.ListGuestRequest.Add(Grect);
+
+            Grect.GuestRequestKey = Configuration.guestRequestKeySeq++;
+            DataSource.ListGuestRequest.Add(Grect.Clone());
             return true;
         }
 
@@ -75,10 +75,11 @@ namespace DAL
         //HostingUnit:
         public bool AddHostingUnit(HostingUnit Hunit)
         {
-            if (DataSource.ListHostingUnits.Exists(item => item.HostingUnitKey == Hunit.HostingUnitKey) == true)
+            if (Hunit.HostingUnitKey != 0 && DataSource.ListHostingUnits.Exists(item => item.HostingUnitKey == Hunit.HostingUnitKey) == true)
                 throw new Exception("Hosting Unit with the same id already exists.");
-            else
-                DataSource.ListHostingUnits.Add(Hunit);
+
+            Hunit.HostingUnitKey = Configuration.HostingUnitKeySeq++;
+            DataSource.ListHostingUnits.Add(Hunit);
             return true;
         }
         public bool DeleteHostingUnit(HostingUnit Dunit)

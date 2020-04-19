@@ -9,14 +9,14 @@ namespace BE
 {
     public class Order
     {
+        [XmlElement("OrderKey")]
+        public int OrderKey { get; set; }
         [XmlElement("HostingUnitKey")]
         public int HostingUnitKey { get; set; }
         [XmlElement("GuestRequestKey")]
         public int GuestRequestKey { get; set; }
         [XmlElement("Status")]
         public  OrderStatus StatusOrder { get; set; }
-        [XmlElement("OrderKey")]
-        public int OrderKey { get; set; }
         [XmlElement("CreateDate")]
         public DateTime CreateDate { get; set; }
         [XmlElement("OrderDate")]

@@ -8,7 +8,10 @@
         mc:Ignorable="d"
         Title="AddUnitWindow" Height="450" Width="800">
     <Grid>
-        <uc:HostingUnitUserControl/>
+        <uc:HostingUnitUserControl x:Name="unitUserControl"/>
+        <Button Content="Add Unit" HorizontalAlignment="Left" Margin="484,343,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Button_Click" />
+
+
 
     </Grid>
 </Window>

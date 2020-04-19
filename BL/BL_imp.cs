@@ -21,7 +21,7 @@ namespace BL
         //Add Client Request
         public bool AddClientRequest(GuestRequest G)
         {
-            if (G.EntryDate >= G.ReleaseDate)
+            if (G.EntryDate < G.ReleaseDate)
                 return dal.AddClientRequest(G);
             else
             {
