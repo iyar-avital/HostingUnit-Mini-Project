@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using BE;
 
@@ -9,6 +10,8 @@ namespace BL
 {
     public interface IBL
     {
+        Thread orderThread { get; set; }
+
         bool AddClientRequest(GuestRequest Grect);
         bool UpdateClientRequest(GuestRequest Up, Request_Status status);
         bool AddHostingUnit(HostingUnit Hunit);
@@ -25,5 +28,14 @@ namespace BL
         List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null);
         List<Order> Lorder(Func<Order, bool> predicat = null);
         List<BankBranch> Lbank();
+
+        string GetUserName();
+        string GetUserPassword();
+        IEnumerable<IGrouping<Areas, GuestRequest>> GroupByArea();
+        IEnumerable<IGrouping<int, GuestRequest>> GroupByPeople();
+        IEnumerable<IGrouping<int, Host>> GroupHostByNumOfUnit();
+        IEnumerable<IGrouping<Areas, HostingUnit>> GroupByAreaOfUnit();
+  
+        void OrderMoreThanMonth();
     }
 }

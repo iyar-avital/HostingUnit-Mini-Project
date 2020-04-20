@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using BE;
 using DAL;
@@ -17,6 +18,77 @@ namespace BL
 
         //////////////////////ClientRequest///////////////////////
 
+        public Thread orderThread { get; set; } = null;
+
+        #region Thread Order
+        private void ThreadOrderMoreThanMonth()
+        {
+            if ((DateTime.Now - dal.GetLastDate()).Days == 0)
+                return;
+            dal.SetLastDate(DateTime.Now);
+            List<Order> orders = dal.Lorder(item => item.StatusOrder == OrderStatus.Sent_Mail);
+            foreach (var order in orders)
+            {
+                if ((DateTime.Now - order.CreateDate).Days >= 30)
+                    dal.UpdateOrder(order, OrderStatus.Closed_from_customer_not_respone);
+            }
+
+            try
+            {
+                Thread.Sleep(86400000);
+            }catch(ThreadInterruptedException e)
+            {
+                //NOTHING
+            }
+        }
+
+        public void OrderMoreThanMonth()
+        {
+            orderThread = new Thread(ThreadOrderMoreThanMonth);
+            //orderThread.
+            orderThread.Start();
+        }
+
+        #endregion
+
+        #region Group
+        public IEnumerable<IGrouping<Areas, GuestRequest>> GroupByArea()
+        {
+            var group = dal.LGrequest().GroupBy(item => item.Area).OrderBy(item => item.Key);
+            return group;
+        }
+
+        public IEnumerable<IGrouping<int, GuestRequest>> GroupByPeople()
+        {
+            var group = from item in dal.LGrequest()
+                    group item by item.Adults + item.Children into list
+                    select list;
+            var g = group.OrderBy(item => item.Key);
+            return g;
+        }
+
+        public IEnumerable<IGrouping<int, Host>> GroupHostByNumOfUnit()
+        {
+            List<HostingUnit> hostingUnits = dal.Lunit();
+            var Unit = from item in hostingUnits
+                            group item by item.Owner.HostKey into g
+                            select g.ToList();
+            var groug = from item in Unit
+                        group item[0].Owner by item.Count() into g
+                        select g;
+            return groug;
+        }
+
+        public IEnumerable<IGrouping<Areas, HostingUnit>> GroupByAreaOfUnit()
+        {
+            List<HostingUnit> hostingUnits = dal.Lunit();
+            var group = from item in hostingUnits
+                        group item by item.Area into s
+                        select s;
+            var g = group.OrderBy(item => item.Key);
+            return g;
+        }
+        #endregion
 
         //Add Client Request
         public bool AddClientRequest(GuestRequest G)
@@ -413,6 +485,15 @@ namespace BL
             dal.initilizeListToXml();
         }
 
+        public string GetUserName()
+        {
+            return dal.GetUserName();
+        }
+
+        public string GetUserPassword()
+        {
+            return dal.GetUserPassword();
+        }
     }
 }
 

@@ -13,16 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfUI;
 
-namespace PLWPF.HostingUnitOptions
+namespace PLWPF
 {
     /// <summary>
-    /// Interaction logic for HostingUnitIdentification.xaml
+    /// Interaction logic for AdminIdentificationWindow.xaml
     /// </summary>
-    public partial class HostingUnitIdentification : Window
+    public partial class AdminIdentificationWindow : Window
     {
-        BE.HostingUnit TheUnit;
-
-        public HostingUnitIdentification()
+        public AdminIdentificationWindow()
         {
             InitializeComponent();
         }
@@ -30,46 +28,30 @@ namespace PLWPF.HostingUnitOptions
         private void UnitPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             //Unit number must be 8 digits
-            if (UnitPassword.Password.Length < 8)
+            if (UserPassword.Password.Length < MainWindow.BL.GetUserPassword().Length)
             {
                 //if a char is deleted after a unit is approved
                 Continue_button.IsEnabled = false;
                 return;
             }
-            
 
-            //checks if the number is correct
-            foreach (var number in UnitPassword.Password)
-            {
-                if (!char.IsDigit(number))
-                {
-                    WrongNumber("Invalid number");
-                    return;
-                }
-            }
-
-            try
-            {
-                TheUnit = MainWindow.BL.GetHostingUnit(Convert.ToInt32(UnitPassword.Password));
+            if (UserPassword.Password == MainWindow.BL.GetUserPassword())
                 Continue_button.IsEnabled = true;
-            }
-            catch (Exception err)
-            {
-                //the unit not exist
-                WrongNumber(err.Message);
-            }
+            else
+                WrongNumber("Incorrect password");
+
+            
         }
 
         private void WrongNumber(string ErrorMessage)
         {
             MessageBox.Show(ErrorMessage);
-            UnitPassword.Password = "";
+            UserPassword.Password = "";
         }
 
         private void Continue_button_Click(object sender, RoutedEventArgs e)
         {
-            new PrivateAreaWindow(TheUnit).ShowDialog();
-            UnitPassword.Password = "";
+            new Administrator().ShowDialog();
         }
     }
 }

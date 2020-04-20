@@ -147,7 +147,7 @@ namespace DAL
                      where order.OrderKey == OKey
                      select order).FirstOrDefault();
             if (o == null)
-                throw new Exception("Unit with Key [" + OKey + "] does not exist");
+                throw new Exception("Order with Key [" + OKey + "] does not exist");
             return o.Clone();
         }
 
@@ -166,5 +166,26 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
+
+        public string GetUserName()
+        {
+            return Configuration.UserName;
+        }
+
+        public string GetUserPassword()
+        {
+            return Configuration.UserPassword;
+        }
+
+        public DateTime GetLastDate()
+        {
+            return Configuration.TheLastDate;   
+        }
+
+        public void SetLastDate(DateTime LastDate)
+        {
+            Configuration.TheLastDate = LastDate;
+        }
+
     }
 }

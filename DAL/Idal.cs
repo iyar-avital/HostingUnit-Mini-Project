@@ -28,5 +28,10 @@ namespace DAL
         string GetMail();
         string GetPassword();
         void initilizeListToXml();
+        string GetUserName();
+        string GetUserPassword();
+
+        DateTime GetLastDate();
+        void SetLastDate(DateTime TheLastDate);
     }
 }

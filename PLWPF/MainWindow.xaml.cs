@@ -16,6 +16,7 @@ using System.IO;
 using PLWPF;
 using BL;
 using PLWPF.GuestOptions;
+using System.Threading;
 
 namespace WpfUI
 {
@@ -34,6 +35,26 @@ namespace WpfUI
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             //player.PlayLooping();
+
+            MainWindow.BL.OrderMoreThanMonth();
+
+            this.Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (MainWindow.BL.orderThread != null)
+            {
+
+                MessageBox.Show("Bye");
+                try
+                {
+                    MainWindow.BL.orderThread.Interrupt();
+                }
+                catch (Exception er) { }
+            }
+            else
+                MessageBox.Show("Bye no abort..");
         }
 
         private void GuestRequest_ButtonClick(object sender, RoutedEventArgs e)
@@ -48,7 +69,7 @@ namespace WpfUI
 
         private void Administrator_Button_Click(object sender, RoutedEventArgs e)
         {
-            new Administrator().ShowDialog();
+            new AdminIdentificationWindow().ShowDialog();
         }
        
         private void MoreWindow_Button_Click(object sender, RoutedEventArgs e)

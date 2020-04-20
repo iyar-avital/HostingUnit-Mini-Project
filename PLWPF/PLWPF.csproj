@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminIdentificationWindow.xaml.cs">
+      <DependentUpon>AdminIdentificationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Administrator.xaml.cs">
       <DependentUpon>Administrator.xaml</DependentUpon>
     </Compile>
@@ -61,6 +64,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Convert_Bool_Visibillity.cs" />
     <Compile Include="GuestOptionsWindow.xaml.cs">
       <DependentUpon>GuestOptionsWindow.xaml</DependentUpon>
     </Compile>
@@ -147,6 +151,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AdminIdentificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Administrator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

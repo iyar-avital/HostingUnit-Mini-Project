@@ -20,7 +20,13 @@ namespace BE
         public static int OrderKeySeq = 30000004;
 
         
-        public static MailAddress mailAddress;
-        public static string Password;
+        public static MailAddress mailAddress; //mail address
+        public static string Password; //if i remember - maill password
+
+        //add here admin user name and password
+        public static string UserName;
+        public static string UserPassword = "12345";
+
+        public static DateTime TheLastDate;
     }
 }

@@ -1,0 +1,15 @@
+﻿1>------ Rebuild All started: Project: Utilities, Configuration: Debug Any CPU ------
+1>  Utilities -> C:\Users\רות אביטל\Source\Repos\Project01_5935_6711_dotNet5780\Utilities\bin\Debug\Utilities.dll
+2>------ Rebuild All started: Project: BE, Configuration: Debug Any CPU ------
+2>  BE -> C:\Users\רות אביטל\Source\Repos\Project01_5935_6711_dotNet5780\BE\bin\Debug\BE.dll
+3>------ Rebuild All started: Project: DS, Configuration: Debug Any CPU ------
+3>  DS -> C:\Users\רות אביטל\Source\Repos\Project01_5935_6711_dotNet5780\DS\bin\Debug\DS.exe
+4>------ Rebuild All started: Project: DAL, Configuration: Debug Any CPU ------
+4>  DAL -> C:\Users\רות אביטל\Source\Repos\Project01_5935_6711_dotNet5780\DAL\bin\Debug\DAL.dll
+5>------ Rebuild All started: Project: BL, Configuration: Debug Any CPU ------
+5>  BL -> C:\Users\רות אביטל\Source\Repos\Project01_5935_6711_dotNet5780\BL\bin\Debug\BL.dll
+6>------ Rebuild All started: Project: PL, Configuration: Debug Any CPU ------
+7>------ Rebuild All started: Project: PLWPF, Configuration: Debug Any CPU ------
+6>  PL -> C:\Users\רות אביטל\Source\Repos\Project01_5935_6711_dotNet5780\PL\bin\Debug\PL.exe
+7>  PLWPF -> C:\Users\רות אביטל\Source\Repos\Project01_5935_6711_dotNet5780\PLWPF\bin\Debug\PLWPF.exe
+========== Rebuild All: 7 succeeded, 0 failed, 0 skipped ==========

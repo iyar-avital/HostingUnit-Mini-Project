@@ -98,7 +98,10 @@ namespace DAL
         }
         public HostingUnit GetHostingUnit(int HKey)
         {
-            return XmlDataSource.LoadFromXML<List<HostingUnit>>(HostingUnitPath).Where(item => item.HostingUnitKey == HKey).FirstOrDefault();
+            HostingUnit hosting = XmlDataSource.LoadFromXML<List<HostingUnit>>(HostingUnitPath).Where(item => item.HostingUnitKey == HKey).FirstOrDefault();
+            if(hosting == null)
+                throw new Exception("Unit with Key [" + HKey + "] does not exist");
+            return hosting;
             //XH.GetHostingUnit(key);
         }
         public Order GetOrder(int OKey)
@@ -229,15 +232,6 @@ namespace DAL
             return XC.GetConfiguration<string>("Password");
         }
 
-        public string GetWebUsername()
-        {
-            return XC.GetConfiguration<string>("WebUsername");
-        }
-
-        public string GetWebPassword()
-        {
-            return XC.GetConfiguration<string>("WebPassword");
-        }
         //List<BankBranch> Lbank()
         public List<string> GetBanksList()
         {
@@ -277,6 +271,27 @@ namespace DAL
         public List<BankBranch> Lbank()
         {
             throw new NotImplementedException();
+        }
+
+        public string GetUserName()
+        {
+            return XC.GetConfiguration<string>("UserName");
+        }
+
+        public string GetUserPassword()
+        {
+            return XC.GetConfiguration<string>("UserPassword");
+        }
+
+
+        public DateTime GetLastDate()
+        {
+            return Convert.ToDateTime(XC.GetConfiguration<string>("LastDate"));
+        }
+
+        public void SetLastDate(DateTime TheLastDate)
+        {
+            XC.UpdateConfiguration<string>("LastDate", TheLastDate.ToString("dd/MM/yyyy"));
         }
     }
 }

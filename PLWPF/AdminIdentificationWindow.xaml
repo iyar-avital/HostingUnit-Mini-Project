@@ -1,0 +1,14 @@
+﻿<Window x:Class="PLWPF.AdminIdentificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        mc:Ignorable="d"
+        Title="AdminIdentificationWindow" Height="200" Width="400">
+        <Grid>
+            <Label Content="Enter your User and password" HorizontalAlignment="Left" Margin="25,34,0,0" VerticalAlignment="Top" Height="36" Width="207"/>
+            <Button Name="Continue_button" Content="continue" HorizontalAlignment="Left" Margin="132,116,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="Continue_button_Click"/>
+           <PasswordBox Name="UserPassword" InputScope="Number" MaxLength="8" HorizontalAlignment="Left" Margin="92,80,0,0" VerticalAlignment="Top" Height="31" Width="166" PasswordChanged="UnitPassword_PasswordChanged"/>
+    </Grid>
+</Window>
