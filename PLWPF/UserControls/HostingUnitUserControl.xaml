@@ -11,6 +11,7 @@
             <ColumnDefinition Width="31*"/>
             <ColumnDefinition Width="35*"/>
         </Grid.ColumnDefinitions>
+        <!--Owner-->
         <TextBox HorizontalAlignment="Left" Height="23" Margin="206,25,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.PrivateName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="206,67,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.FamilyName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="206,110,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.MailAddress, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
@@ -18,32 +19,41 @@
 
         <!--Bank-->
         <TextBox HorizontalAlignment="Left" Height="23" Margin="206,201,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankAccountNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,248,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BankNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,296,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BankName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,371,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchCity, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,334,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchNumber, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="206,414,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchAddress, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <ComboBox  Name="cbBanksList"  SelectedValue="{Binding Path=Owner.BankBranchDetails.BankSelectionValue, Mode=TwoWay}" SelectionChanged="cbBanksList_SelectionChanged"  DropDownOpened="cbBanksList_DropDownOpened" Margin="143,261,50,173"/>
+        <ComboBox  Name="cbBranchesList" SelectedValue="{Binding Path=Owner.BankBranchDetails.BranchSelectionValue, Mode=TwoWay}"   SelectionChanged="cbBranchesList_SelectionChanged"  DropDownOpened="cbBranchesList_DropDownOpened" Margin="143,293,50,142" Grid.Column="0" />
+        <TextBox Name="tbBranchCity" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="206,334,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchCity, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="tbBranchAddress" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="206,379,0,0" TextWrapping="Wrap" Text="{Binding Path=Owner.BankBranchDetails.BranchAddress, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
 
         <TextBox HorizontalAlignment="Left" Height="23" Margin="212,43,0,0" TextWrapping="Wrap" Text="{Binding Path=HostingUnitName, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="212,87,0,0" TextWrapping="Wrap" Text="{Binding Path=Adults, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="212,126,0,0" TextWrapping="Wrap" Text="{Binding Path=Children, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <CheckBox Content="Pool" Grid.Column="1" IsChecked="{Binding Path=Pool, Mode=TwoWay}" HorizontalAlignment="Left" Margin="212,284,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Jacuzzi" Grid.Column="1" IsChecked="{Binding Path=Jacuzzi, Mode=TwoWay}" HorizontalAlignment="Left" Margin="212,307,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Garden" Grid.Column="1" IsChecked="{Binding Path=Garden, Mode=TwoWay}" HorizontalAlignment="Left" Margin="212,345,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Children Attractions" IsChecked="{Binding Path=ChildrensAttractions, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Margin="212,379,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="TypeBox" Grid.Column="1" HorizontalAlignment="Left" SelectedValue="{Binding Path=Type}" Margin="212,223,0,0" VerticalAlignment="Top" Width="120"/>
 
         <!--Labels-->
+            <!--Labels Left-->
+        <Label Content="Host Settings" HorizontalAlignment="Left" Margin="161,-5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <ComboBox Name="AreaBox" Grid.Column="1" HorizontalAlignment="Left" SelectedValue="{Binding Path=Area}" Margin="212,177,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Private Name" HorizontalAlignment="Left" Margin="44,25,0,0" VerticalAlignment="Top"/>
         <Label Content="Family Name" HorizontalAlignment="Left" Margin="44,64,0,0" VerticalAlignment="Top"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="44,107,0,0" VerticalAlignment="Top"/>
         <Label Content="Phone Number" HorizontalAlignment="Left" Margin="44,150,0,0" VerticalAlignment="Top"/>
         <Label Content="Bank Account Number" HorizontalAlignment="Left" Margin="44,198,0,0" VerticalAlignment="Top"/>
-        <Label Content="Bank Number" HorizontalAlignment="Left" Margin="44,245,0,0" VerticalAlignment="Top"/>
-        <Label Content="Bank Name" HorizontalAlignment="Left" Margin="44,293,0,0" VerticalAlignment="Top"/>
-        <Label Content="Branch Number" HorizontalAlignment="Left" Margin="44,331,0,0" VerticalAlignment="Top"/>
-        <Label Content="Branch City" HorizontalAlignment="Left" Margin="44,365,0,0" VerticalAlignment="Top"/>
-        <Label Content="Branch Address" HorizontalAlignment="Left" Margin="45,411,0,0" VerticalAlignment="Top"/>
+        <Label Content="Bank Name" HorizontalAlignment="Left" Margin="44,251,0,0" VerticalAlignment="Top"/>
+        <Label Content="Branch Name" HorizontalAlignment="Left" Margin="44,290,0,0" VerticalAlignment="Top"/>
+        <Label Content="Branch City" HorizontalAlignment="Left" Margin="44,334,0,0" VerticalAlignment="Top"/>
+        <Label Content="Branch Address" HorizontalAlignment="Left" Margin="44,373,0,0" VerticalAlignment="Top"/>
+            <!--Labels Right-->
+        <Label Content="Unit Settings" HorizontalAlignment="Left" Margin="161,-5,0,0" VerticalAlignment="Top" Grid.Column="1" FontWeight="Bold"/>
         <Label Content="Unit Name" HorizontalAlignment="Left" Margin="55,41,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Label Content="Children" HorizontalAlignment="Left" Margin="55,126,0,0" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="-0.111,0.5"/>
         <Label Content="Adults" HorizontalAlignment="Left" Margin="55,87,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="55,219,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.829,-1.154" Grid.Column="1"/>
         <Label Content="Area" HorizontalAlignment="Left" Margin="55,173,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        
         <Separator HorizontalAlignment="Left" Height="94" Margin="166,178,0,0" VerticalAlignment="Top" Width="432" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
             <Separator.RenderTransform>
                 <TransformGroup>
@@ -54,14 +64,5 @@
                 </TransformGroup>
             </Separator.RenderTransform>
         </Separator>
-        <CheckBox Content="Pool" Grid.Column="1" IsChecked="{Binding Path=Pool, Mode=TwoWay}" HorizontalAlignment="Left" Margin="212,284,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="Jacuzzi" Grid.Column="1" IsChecked="{Binding Path=Jacuzzi, Mode=TwoWay}" HorizontalAlignment="Left" Margin="212,307,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="Garden" Grid.Column="1" IsChecked="{Binding Path=Garden, Mode=TwoWay}" HorizontalAlignment="Left" Margin="212,345,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="Children Attractions" IsChecked="{Binding Path=ChildrensAttractions, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Margin="212,379,0,0" VerticalAlignment="Top"/>
-        <Label Content="Host Settings" HorizontalAlignment="Left" Margin="161,-5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Unit Settings" HorizontalAlignment="Left" Margin="161,-5,0,0" VerticalAlignment="Top" Grid.Column="1" FontWeight="Bold"/>
-        <ComboBox Name="AreaBox" Grid.Column="1" HorizontalAlignment="Left" SelectedValue="{Binding Path=Area}" Margin="212,177,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="TypeBox" Grid.Column="1" HorizontalAlignment="Left" SelectedValue="{Binding Path=Type}" Margin="212,223,0,0" VerticalAlignment="Top" Width="120"/>
-
     </Grid>
 </UserControl>

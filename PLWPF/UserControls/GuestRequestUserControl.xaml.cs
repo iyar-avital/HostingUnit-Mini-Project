@@ -36,11 +36,9 @@ namespace PLWPF.UserControls
 
             EntryDateDP.DisplayDateStart = DateTime.Today;
             EntryDateDP.DisplayDateEnd = DateTime.Today.AddYears(1).AddDays(-2);
-            //EntryDateDP.SelectedDate = DateTime.Today;
 
             LeaveDateDP.DisplayDateStart = DateTime.Today.AddDays(1);
             LeaveDateDP.DisplayDateEnd = DateTime.Today.AddYears(1).AddDays(-1);
-            //EntryDateDP.SelectedDate = DateTime.Today;
         }
 
         

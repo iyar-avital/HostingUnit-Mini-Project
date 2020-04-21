@@ -25,33 +25,26 @@ namespace DAL
         public readonly string HostingUnitPath = @"HostingUnitXml.xml";
 
         public bool AddOrder(Order order)
-        //public void AddOrder(Order order)
         {
             XO.AddOrder(order);
             return true;
         }
 
         public bool AddClientRequest(GuestRequest guestRequest)
-        //public long AddRequest(GuestRequest guestRequest)
         {
-            //return XG.AddRequest(guestRequest);
             XG.AddRequest(guestRequest);
             return true;
         }
 
         public bool AddHostingUnit(HostingUnit hostingUnit)
-        //public long AddUnit(HostingUnit hostingUnit)
         {
             HostingUnit hostingUnitCopy = (HostingUnit)hostingUnit.Clone();
             hostingUnitCopy.HostingUnitKey = XC.GetConfiguration<int>("HostUnitKey");
             List<HostingUnit> unitList = Lunit();
-            //DataSource.ListHostingUnits.Add(hostingUnitCopy);
             unitList.Add(hostingUnitCopy);
             XmlDataSource.SaveToXML<List<HostingUnit>>(unitList, HostingUnitPath);
             XC.UpdateConfiguration<int>("HostUnitKey", (hostingUnitCopy.HostingUnitKey + 1));
-            //return hostingUnitCopy.HostingUnitKey;
             return true;
-            //XH.AddUnit(hostingUnit);
         }
 
         public float GetCommission()
@@ -59,11 +52,7 @@ namespace DAL
             return XC.GetConfiguration<float>("SumConnission");
         }
 
-        /*
-        public List<BankAccount> GetAllBankBranches()
-        {
-            throw new NotImplementedException();
-        }*/
+        
         public List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null) 
         {
             List<GuestRequest> guestRequests = XmlDataSource.LoadFromXML<List<GuestRequest>>(XG.GuestRequestPath);
@@ -101,8 +90,8 @@ namespace DAL
             HostingUnit hosting = XmlDataSource.LoadFromXML<List<HostingUnit>>(HostingUnitPath).Where(item => item.HostingUnitKey == HKey).FirstOrDefault();
             if(hosting == null)
                 throw new Exception("Unit with Key [" + HKey + "] does not exist");
-            return hosting;
-            //XH.GetHostingUnit(key);
+            return hosting.Clone();
+            
         }
         public Order GetOrder(int OKey)
         {
@@ -232,7 +221,7 @@ namespace DAL
             return XC.GetConfiguration<string>("Password");
         }
 
-        //List<BankBranch> Lbank()
+        
         public List<string> GetBanksList()
         {
             return XB.getBanksList();
@@ -252,22 +241,7 @@ namespace DAL
         {
             return XC.GetConfiguration<string>("Msg");
         }
-        /*
-        public List<HostingUnit> Lunit(Func<HostingUnit, bool> predicat = null)
-        {
-            throw new NotImplementedException();
-        }
         
-        public List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null)
-        {
-            throw new NotImplementedException();
-        }
-        
-        public List<Order> Lorder(Func<Order, bool> predicat = null)
-        {
-            throw new NotImplementedException();
-        }
-        */
         public List<BankBranch> Lbank()
         {
             throw new NotImplementedException();

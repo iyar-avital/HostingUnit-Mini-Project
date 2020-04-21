@@ -90,7 +90,7 @@ namespace DAL.ClassXml
                         BankNumber = int.Parse(p.Element("Bank_Code").Value),
                         BankName = p.Element("Bank_Name").Value.ToString(),
                         BranchNumber = int.Parse(p.Element("Branch_Code").Value),
-                        /*BranchName = p.Element("Branch_Name").Value.ToString(),*/
+                        BranchName = p.Element("Branch_Name").Value.ToString(),
                         BranchAddress = p.Element("Branch_Address").Value.ToString(),
                         BranchCity = p.Element("City").Value.ToString()/*,
                         BranchZipCode = int.Parse(p.Element("Zip_Code").Value),

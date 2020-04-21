@@ -115,8 +115,12 @@ namespace PLWPF
         {
             if (selectedItem is HostingUnit)
             {
+                HostingUnit h = (HostingUnit)selectedItem;
                 ViewUnitWindow viewUnit = new ViewUnitWindow();
-                viewUnit.unitUserControl.DataContext = (HostingUnit)selectedItem;
+                viewUnit.unitUserControl.DataContext = h;
+                viewUnit.unitUserControl.cbBranchesList.ItemsSource = MainWindow.BL.GetBranchesList(h.Owner.BankBranchDetails.BankName);
+                viewUnit.unitUserControl.cbBranchesList.SelectedValue = h.Owner.BankBranchDetails.BranchNumber + " - " + h.Owner.BankBranchDetails.BranchName;
+
                 viewUnit.ShowDialog();
             }
             else if (selectedItem is GuestRequest)
@@ -134,7 +138,6 @@ namespace PLWPF
             if (selectedItem is HostingUnit)
             {
                 UpdateUnitWindow editUnit = new UpdateUnitWindow(((HostingUnit)selectedItem).HostingUnitKey);
-                //editUnit.unitUserControl.DataContext = (BE.HostingUnit)selectedItem;
                 editUnit.ShowDialog();
                 RefreshUnits();
             }

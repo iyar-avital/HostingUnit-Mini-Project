@@ -52,7 +52,6 @@ namespace DAL
             return BankBranches;
         }
 
-        //GuestRequest:
         public bool AddClientRequest(GuestRequest Grect)
         {
             if (Grect.GuestRequestKey != 0 && DataSource.ListGuestRequest.Exists(item => item.GuestRequestKey == Grect.GuestRequestKey) == true)
@@ -72,7 +71,6 @@ namespace DAL
             return true;
         }
 
-        //HostingUnit:
         public bool AddHostingUnit(HostingUnit Hunit)
         {
             if (Hunit.HostingUnitKey != 0 && DataSource.ListHostingUnits.Exists(item => item.HostingUnitKey == Hunit.HostingUnitKey) == true)
@@ -103,7 +101,6 @@ namespace DAL
             return true;
         }
 
-        //Order:
         public bool AddOrder(Order Aor)
         {
             Aor.OrderKey = Configuration.OrderKeySeq++;
@@ -187,5 +184,19 @@ namespace DAL
             Configuration.TheLastDate = LastDate;
         }
 
+        public List<string> GetBanksList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetBranchesList(string BankName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BankBranch GetBranch(int bankKey, int branchKey)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace DAL
             BankBranch t = new BankBranch();
             t.BankName = b.BankName;
             t.BankNumber = b.BankNumber;
+            t.BranchName = b.BranchName;
             t.BranchAddress = b.BranchAddress;
             t.BranchCity = b.BranchCity;
             t.BranchNumber = b.BranchNumber;

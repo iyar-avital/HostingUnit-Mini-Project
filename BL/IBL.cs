@@ -37,5 +37,10 @@ namespace BL
         IEnumerable<IGrouping<Areas, HostingUnit>> GroupByAreaOfUnit();
   
         void OrderMoreThanMonth();
+
+
+        List<string> GetBanksList();
+        List<string> GetBranchesList(string BankName);
+        BankBranch GetBranch(int bankKey, int branchKey);
     }
 }

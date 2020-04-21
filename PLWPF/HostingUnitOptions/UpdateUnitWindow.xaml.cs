@@ -21,43 +21,33 @@ namespace PLWPF.HostingUnitOptions
     /// </summary>
     public partial class UpdateUnitWindow : Window
     {
-        private HostingUnit unit { get; set; } = new HostingUnit();
+        private HostingUnit unit { get; set; } 
         public UpdateUnitWindow(int HKey)
         {
             InitializeComponent();
             unit = MainWindow.BL.GetHostingUnit(HKey);
-            unitUserControl.hu = unit;
             unitUserControl.DataContext = unit;
+            unitUserControl.isUpdate = true;
             unitUserControl.IsEnabled = true;
+            unitUserControl.cbBranchesList.SelectedValue = unit.Owner.BankBranchDetails.BranchSelectionValue;
+            unitUserControl.SetDataContext();
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            /*var result = Validation.GetErrors(TextBox.);
-            if (result.Count > 0) // has errors.
-            {
-                //write your logic here.
-            }*/
-
-
+            
             try
             {
                 MainWindow.BL.UpdateHostingUnit(unitUserControl.hu);
                 MessageBoxResult result = MessageBox.Show("[Key:" + unitUserControl.hu.HostingUnitKey + "] Unit has been updated.\n\nWould you like to close this window?", "System", MessageBoxButton.YesNo, MessageBoxImage.Information);
                 if (result.Equals(MessageBoxResult.Yes))
                     this.Close();
-                //MessageBox.Show(hu.ToString());
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message, "System", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-        }
-
-        private void unitUserControl_Loaded(object sender, RoutedEventArgs e)
-        {
 
         }
     }

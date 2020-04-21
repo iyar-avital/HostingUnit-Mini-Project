@@ -494,6 +494,21 @@ namespace BL
         {
             return dal.GetUserPassword();
         }
+
+        public List<string> GetBanksList()
+        {
+            return dal.GetBanksList();
+        }
+
+        public List<string> GetBranchesList(string bankName)
+        {
+            return dal.GetBranchesList(bankName);
+        }
+
+        public BankBranch GetBranch(int bankKey, int branchKey)
+        {
+            return dal.GetBranch(bankKey, branchKey);
+        }
     }
 }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="OrderOptionsWindow" Height="300" Width="600">
+        Title="OrderOptionsWindow" Height="300" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button Click="AddOrder_Button" Content="Add Order" HorizontalAlignment="Left" Margin="71,46,0,0" VerticalAlignment="Top" Width="449" Height="72" FontSize="36"/>
         <Button Name="UpdateOrder_button" Content="Update Order" HorizontalAlignment="Left" Margin="71,137,0,0" VerticalAlignment="Top" Width="449" Height="74" FontSize="36" Click="Button_Click"/>
