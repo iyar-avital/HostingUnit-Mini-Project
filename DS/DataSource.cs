@@ -194,7 +194,7 @@ namespace DS
 
         };
 
-        public bool[,] Diary = new bool[13, 32];
+        //public bool[,] Diary = new bool[13, 32];
         public static List<BankBranch> ListBankBranch = new List<BankBranch>
         {
             new BankBranch

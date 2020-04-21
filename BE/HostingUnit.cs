@@ -24,7 +24,7 @@ namespace BE
         public bool[] DiaryDto
         {
             get { return Diary.Flatten(); }
-            set { Diary = value.Expand(10); }
+            set { Diary = value.Expand(12); }
         }
 
 
@@ -59,7 +59,7 @@ namespace BE
         public override string ToString()
         {
             string str = "";
-            str += "Hosting Unit Key: " + HostingUnitKey + "\n" +
+             str += "Hosting Unit Key: " + HostingUnitKey + "\n" +
                 "Owner \n" + Owner + "\n" +
                 "Hosting Unit Name: " + HostingUnitName + "\n" +
                 "Adults: " + Adults + "\n" +
@@ -73,6 +73,7 @@ namespace BE
             DateTime Date = new DateTime(2020, 01, 02);
             while (Date.Year != 2021)
             {
+
                 if (this[Date] && !this[Date.AddDays(-1)])
                 {
                     startDate = Date;
@@ -100,8 +101,8 @@ namespace BE
 
         public bool this[DateTime index]
         {
-            get { return Diary[index.Month - 1, index.Day - 1]; }
-            set { Diary[index.Month - 1, index.Day - 1] = value; }
+            get { return Diary[index.Month-1, index.Day-1]; }
+            set { Diary[index.Month-1, index.Day-1] = value; }
         }
     }
 }

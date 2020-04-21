@@ -62,7 +62,14 @@ namespace DAL
         public static HostingUnit Clone(this HostingUnit u)
         {
             HostingUnit t = new HostingUnit();
-            t.Diary = u.Diary;
+            t.Diary = new bool[12, 31];
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 31; j++)
+                {
+                    t.Diary[i, j] = u.Diary[i, j];
+                }
+            }
             t.HostingUnitKey = u.HostingUnitKey;
             t.HostingUnitName = u.HostingUnitName;
             t.Owner = u.Owner.Clone();

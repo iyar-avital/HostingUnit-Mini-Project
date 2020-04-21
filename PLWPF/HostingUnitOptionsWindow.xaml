@@ -10,6 +10,5 @@
     <Grid Margin="0,0,0,-1">
         <Button Click="AddUnitDialog_Button" Content="Add Hosting Unit" HorizontalAlignment="Left" Margin="71,46,0,0" VerticalAlignment="Top" Width="449" Height="72" FontSize="36"/>
         <Button Click="PrivateAreaDialog_Button" Content="Private Area" HorizontalAlignment="Left" Margin="71,137,0,0" VerticalAlignment="Top" Width="449" Height="74" FontSize="36"/>
-
     </Grid>
 </Window>

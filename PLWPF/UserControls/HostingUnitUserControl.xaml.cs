@@ -22,7 +22,7 @@ namespace PLWPF.UserControls
     /// </summary>
     public partial class HostingUnitUserControl : UserControl
     {
-        public HostingUnit hu = new HostingUnit() {Diary = new bool[13,32], Owner = new Host() { BankBranchDetails = new BankBranch() } };
+        public HostingUnit hu = new HostingUnit() {Diary = new bool[12,31], Owner = new Host() { BankBranchDetails = new BankBranch() } };
         public HostingUnitUserControl()
         {
             DataContext = hu;

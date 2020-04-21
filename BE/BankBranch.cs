@@ -23,7 +23,7 @@ namespace BE
 
         public override string ToString()
         {
-            return BankNumber.ToString() + BankName.ToString() + BranchNumber.ToString() + BranchAddress.ToString()+ BranchCity.ToString();
+            return BankNumber.ToString() + BankName + BranchNumber.ToString() + BranchAddress+ BranchCity;
                
         }
 

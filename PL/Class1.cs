@@ -38,7 +38,7 @@ namespace PL
             h1.Jacuzzi = false;
             h1.Pool = true;
             h1.Type = Type_Unit.Zimmer;
-            h1.Diary = new bool[13, 32];
+            h1.Diary = new bool[12, 31];
 
             //example2  of HostingUnit
             HostingUnit h2 = new HostingUnit();
@@ -64,7 +64,7 @@ namespace PL
             h2.Jacuzzi = true;
             h2.Pool = true;
             h2.Type = Type_Unit.HotelRoom;
-            h2.Diary = new bool[13, 32];
+            h2.Diary = new bool[12, 31];
 
             //example1  of GuestRequest
             GuestRequest g1 = new GuestRequest();
