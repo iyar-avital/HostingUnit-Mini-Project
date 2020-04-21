@@ -25,6 +25,13 @@ namespace DAL
         List<GuestRequest> LGrequest(Func<GuestRequest, bool> predicat = null);
         List<Order> Lorder(Func<Order, bool> predicat = null);
         List<BankBranch> Lbank();
+
+
+        List<string> GetBanksList();
+        List<string> GetBranchesList(string BankName);
+        BankBranch GetBranch(int bankKey, int branchKey);
+
+
         string GetMail();
         string GetPassword();
         void initilizeListToXml();

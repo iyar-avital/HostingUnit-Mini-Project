@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF.OrderOptions"
         mc:Ignorable="d"
-        Title="AddOrderWindow" Height="600" Width="1200">
+        Title="AddOrderWindow" Height="600" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <DataGrid Name="AddOrder_Grid" HorizontalAlignment="Left" Height="507" Margin="10,10,0,0" VerticalAlignment="Top" Width="1160" AutoGeneratingColumn="OnAutoGeneratingColumn" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" MouseDoubleClick="AddOrder_Grid_MouseDoubleClick"/>
         <Button Name="AddOrder_Button" Content="Add" HorizontalAlignment="Left" Margin="566,522,0,0" VerticalAlignment="Top" Width="108" Height="37" Click="AddOrder_Button_Click"/>

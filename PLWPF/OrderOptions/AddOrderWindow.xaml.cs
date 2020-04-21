@@ -78,8 +78,6 @@ namespace PLWPF.OrderOptions
             List<String> SuccessMessages = new List<string>();
             List<String> ErrorMessages = new List<string>();
 
-            /*TESTING MY COMPARATION*/
-
             foreach (var guest_request in AddOrder_Grid.SelectedItems)
             {
                 try

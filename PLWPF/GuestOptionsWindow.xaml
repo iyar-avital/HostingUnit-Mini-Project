@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:PLWPF.UserControls"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="GuestOptions" Height="200" Width="600">
+        Title="GuestOptions" Height="200" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
 
 

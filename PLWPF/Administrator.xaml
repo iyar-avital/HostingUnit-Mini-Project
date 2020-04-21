@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="Administrator" Height="450" Width="800">
+        Title="Administrator" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TabControl Name="PrivateAreaTabControl" HorizontalAlignment="Left" Height="352" Margin="23,27,0,0" VerticalAlignment="Top" Width="730" TabStripPlacement="Left">
             <TabItem Header="Hosting Units">

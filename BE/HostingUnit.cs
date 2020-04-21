@@ -24,7 +24,7 @@ namespace BE
         public bool[] DiaryDto
         {
             get { return Diary.Flatten(); }
-            set { Diary = value.Expand(10); }
+            set { Diary = value.Expand(12); }
         }
 
 

@@ -25,6 +25,7 @@ namespace PLWPF.HostingUnitOptions
             InitializeComponent();
             unitUserControl.DataContext = unit;
             unitUserControl.IsEnabled = false;
+            unitUserControl.isView = true;
         }
     }
 }

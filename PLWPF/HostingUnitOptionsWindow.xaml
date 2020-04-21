@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:PLWPF.UserControls"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="HostingUnitOptionsWindow" Height="300" Width="600">
+        Title="HostingUnitOptionsWindow" Height="300" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,0,-1">
         <Button Click="AddUnitDialog_Button" Content="Add Hosting Unit" HorizontalAlignment="Left" Margin="71,46,0,0" VerticalAlignment="Top" Width="449" Height="72" FontSize="36"/>
         <Button Click="PrivateAreaDialog_Button" Content="Private Area" HorizontalAlignment="Left" Margin="71,137,0,0" VerticalAlignment="Top" Width="449" Height="74" FontSize="36"/>

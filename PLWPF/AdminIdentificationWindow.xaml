@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="AdminIdentificationWindow" Height="200" Width="400">
+        Title="AdminIdentificationWindow" Height="200" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
         <Grid>
             <Label Content="Enter your User and password" HorizontalAlignment="Left" Margin="25,34,0,0" VerticalAlignment="Top" Height="36" Width="207"/>
             <Button Name="Continue_button" Content="continue" HorizontalAlignment="Left" Margin="132,116,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="Continue_button_Click"/>

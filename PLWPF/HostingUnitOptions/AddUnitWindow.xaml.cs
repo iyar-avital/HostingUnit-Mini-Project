@@ -23,6 +23,7 @@ namespace PLWPF.HostingUnitOptions
         public AddUnitWindow()
         {
             InitializeComponent();
+            unitUserControl.isAdd = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

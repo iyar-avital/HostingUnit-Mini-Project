@@ -44,17 +44,14 @@ namespace WpfUI
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (MainWindow.BL.orderThread != null)
-            {
-
-                MessageBox.Show("Bye");
+            {            
                 try
                 {
                     MainWindow.BL.orderThread.Interrupt();
                 }
                 catch (Exception er) { }
             }
-            else
-                MessageBox.Show("Bye no abort..");
+            
         }
 
         private void GuestRequest_ButtonClick(object sender, RoutedEventArgs e)
