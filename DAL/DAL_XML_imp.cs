@@ -26,6 +26,7 @@ namespace DAL
 
         public bool AddOrder(Order order)
         {
+            order.CreateDate = DateTime.Now;
             XO.AddOrder(order);
             return true;
         }

@@ -7,27 +7,67 @@
         mc:Ignorable="d"
         Title="Administrator" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <TabControl Name="PrivateAreaTabControl" HorizontalAlignment="Left" Height="352" Margin="23,27,0,0" VerticalAlignment="Top" Width="730" TabStripPlacement="Left">
-            <TabItem Header="Hosting Units">
+
+
+
+        <TabControl HorizontalAlignment="Left" Height="411" VerticalAlignment="Top" Width="774" Margin="10,0,0,0">
+            <TabItem Header="Lists Informataion">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid Name="UnitsListGrid" MouseDoubleClick="ListGrid_MouseDoubleClick" PreviewKeyDown="PreviewKeyDownHandler" HorizontalAlignment="Left" Height="295" Margin="10,10,0,0" VerticalAlignment="Top" Width="609" AutoGeneratingColumn="OnAutoGeneratingColumn" IsReadOnly="True" CanUserDeleteRows="True" CanUserAddRows="False"/>
-                    <Button Content="View" Margin="10,310,531,11" Click="ViewBtn_Click"/>
-                    <Button Content="Edit" Margin="103,310,438,11" Click="EditBtn_Click"/>
-                    <Button Content="Delete" Margin="196,310,345,11" Click="DeleteBtn_Click"/>
+                    <TabControl Name="PrivateAreaTabControl" HorizontalAlignment="Left" Height="352" Margin="23,27,0,0" VerticalAlignment="Top" Width="730" TabStripPlacement="Left">
+                        <TabItem Header="Hosting Units">
+                            <Grid Background="#FFE5E5E5">
+                                <DataGrid Name="UnitsListGrid" MouseDoubleClick="ListGrid_MouseDoubleClick" PreviewKeyDown="PreviewKeyDownHandler" HorizontalAlignment="Left" Height="295" Margin="10,10,0,0" VerticalAlignment="Top" Width="609" AutoGeneratingColumn="OnAutoGeneratingColumn" IsReadOnly="True" CanUserDeleteRows="True" CanUserAddRows="False"/>
+                                <Button Content="View" Margin="10,310,531,11" Click="ViewBtn_Click"/>
+                                <Button Content="Edit" Margin="103,310,438,11" Click="EditBtn_Click"/>
+                                <Button Content="Delete" Margin="196,310,345,11" Click="DeleteBtn_Click"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Guest Requests">
+                            <Grid Background="#FFE5E5E5">
+                                <DataGrid Name="GuestsListGrid" MouseDoubleClick="ListGrid_MouseDoubleClick" Height="296" Margin="10,10,10,0" VerticalAlignment="Top" AutoGeneratingColumn="OnAutoGeneratingColumn" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"/>
+                                <Button Content="View" Margin="10,310,531,11" Click="ViewBtn_Click"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Orders">
+                            <Grid Background="#FFE5E5E5">
+                                <DataGrid Name="OrdersListGrid" MouseDoubleClick="ListGrid_MouseDoubleClick"  HorizontalAlignment="Left" Height="296" Margin="10,10,0,0" VerticalAlignment="Top" Width="609" AutoGeneratingColumn="OnAutoGeneratingColumn" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"/>
+                                
+                                <Button Content="Update" Margin="10,311,531,10" Click="EditBtn_Click"/>
+                            </Grid>
+                        </TabItem>
+          
+                    </TabControl>
+
                 </Grid>
             </TabItem>
-            <TabItem Header="Guest Requests">
+            <TabItem Header="Grouping Information">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid Name="GuestsListGrid" MouseDoubleClick="ListGrid_MouseDoubleClick" Height="296" Margin="10,10,10,0" VerticalAlignment="Top" AutoGeneratingColumn="OnAutoGeneratingColumn" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"/>
-                    <Button Content="View" Margin="10,310,531,11" Click="ViewBtn_Click"/>
-                    <!--<Button IsEnabled="{Binding Path=DeleteButtonEnable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Content="Delete" Margin="264,311,277,10" Click="Delete_Button_Click"/>-->
-                </Grid>
-            </TabItem>
-            <TabItem Header="Orders">
-                <Grid Background="#FFE5E5E5">
-                    <DataGrid Name="OrdersListGrid" MouseDoubleClick="ListGrid_MouseDoubleClick"  HorizontalAlignment="Left" Height="296" Margin="10,10,0,0" VerticalAlignment="Top" Width="609" AutoGeneratingColumn="OnAutoGeneratingColumn" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"/>
-                    <Button Content="View" Margin="10,310,531,11" Click="ViewBtn_Click"/>
-                    <Button Content="Update" Margin="103,310,438,11" Click="EditBtn_Click"/>
+                    <TabControl Name="GroupControl" HorizontalAlignment="Left" Height="352" Margin="3,10,0,0" VerticalAlignment="Top" Width="759" TabStripPlacement="Left">
+                        <TabItem Header="Guest Request By Area">
+                            <StackPanel>
+                                <Label Content="Area"/>
+                                <Grid Name="RequestByArea_Grid" Background="#FFE5E5E5" Height="347"/>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Guest Request By Number Of People">
+                            <StackPanel>
+                                <Label Content="Number of people"/>
+                                <Grid Name="RequestByPeople_Grid" Background="#FFE5E5E5" Height="316"/>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Host By Number Of Unit">
+                            <StackPanel>
+                                <Label Content="Number of unit"/>
+                                <Grid Name="UnitByHost_Grid" Background="#FFE5E5E5" Height="347"/>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Hosting Unit By Area">
+                            <StackPanel>
+                                <Label Content="Area"/>
+                                <Grid Name="UnitByArea_Grid" Background="#FFE5E5E5" Height="315"/>
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
                 </Grid>
             </TabItem>
         </TabControl>

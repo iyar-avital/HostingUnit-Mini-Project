@@ -182,6 +182,7 @@ namespace BL
 
             if (ApproveReq(Aor))//return true if the guest request approved.
             {
+
                 dal.AddOrder(Aor);
                 isOrderAdd = true;
                 UpdateOrder(Aor, OrderStatus.Sent_Mail);
@@ -224,8 +225,9 @@ namespace BL
                         throw new Exception("These dates are busy");
                 }
             }
-
+            //Order orderToUpdate = O.Clone()
             dal.UpdateOrder(O.Clone(), status);
+            //O
 
             //save the dates
             if (status == OrderStatus.Closed_from_customer_not_respone)

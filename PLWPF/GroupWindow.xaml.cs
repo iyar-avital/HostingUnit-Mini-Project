@@ -25,10 +25,6 @@ namespace PLWPF
         {
             InitializeComponent();
 
-            ShowRequestByArea();
-            ShowRequestByPeople();
-            ShowHotingUnitByArea();
-            ShowHostingUnitByHost();
         }
 
         private void ShowRequestByArea()

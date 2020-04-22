@@ -61,8 +61,8 @@ namespace DAL
                 new XElement("HostingUnitKey", order.HostingUnitKey),
                 new XElement("GuestRequestKey", order.GuestRequestKey),
                 new XElement("Status", order.StatusOrder),
-                new XElement("CreateDate", order.CreateDate),
-                new XElement("OrderDate", order.OrderDate)
+                new XElement("CreateDate", order.CreateDate.ToShortDateString()),
+                new XElement("OrderDate", order.OrderDate.ToShortDateString())
                 /*new XElement("CommissionValue", order.CommissionValue)*/));
             OrderRoot.Save(OrderPath);
             XC.UpdateConfiguration<long>("OrderKey", order.OrderKey+1);//run
@@ -77,6 +77,7 @@ namespace DAL
                         HostingUnitKey = Convert.ToInt32(p.Element("HostingUnitKey").Value),
                         GuestRequestKey = Convert.ToInt32(p.Element("GuestRequestKey").Value),
                         CreateDate = DateTime.Parse(p.Element("CreateDate").Value),
+                        StatusOrder = (OrderStatus)Enum.Parse(typeof(OrderStatus), p.Element("Status").Value),
                         OrderDate = DateTime.Parse(p.Element("OrderDate").Value)/*,
                         CommissionValue = float.Parse(p.Element("CommissionValue").Value)*/
                     }).ToList();
@@ -132,8 +133,8 @@ namespace DAL
             XElement xElement = OrderRoot.Elements().Where(item => (long)Convert.ToInt32(item.Element("OrderKey").Value) == order.OrderKey).FirstOrDefault();
             xElement.Element("GuestRequestKey").SetValue(order.GuestRequestKey);
             xElement.Element("HostingUnitKey").SetValue(order.HostingUnitKey);
-            xElement.Element("CreateDate").SetValue(order.CreateDate);
-            xElement.Element("OrderDate").SetValue(order.OrderDate);
+            xElement.Element("CreateDate").SetValue(order.CreateDate.ToShortDateString());
+            xElement.Element("OrderDate").SetValue(order.OrderDate.ToShortDateString());
             xElement.Element("Status").SetValue(order.StatusOrder);
             /*xElement.Element("CommissionValue").SetValue(order.CommissionValue);*/
             OrderRoot.Save(OrderPath);
