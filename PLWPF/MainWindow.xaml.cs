@@ -36,6 +36,8 @@ namespace WpfUI
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             //player.PlayLooping();
 
+           
+
             MainWindow.BL.OrderMoreThanMonth();
 
             this.Closing += MainWindow_Closing;

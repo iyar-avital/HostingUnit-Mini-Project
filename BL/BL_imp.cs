@@ -244,6 +244,35 @@ namespace BL
             return true;
         }
 
+        public void SendEmailTest()
+        {
+            MailMessage mail = new MailMessage();
+            mail.To.Add(dal.GetMail());
+            mail.From = new MailAddress(dal.GetMail());
+            mail.Subject = "הזמנה ליחידת אירוח " +1231;
+            mail.Body = "<div>" +
+                         "<p1>הזמנה ליחידת אירוח " + 2323232 + "</p1>" +
+                         "<div>הזמנה מספר " + 2143124 + "</div>" +
+                         "</div>";
+
+
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new NetworkCredential(dal.GetMail(), dal.GetPassword());//"xxxxxxx@gmail.com", "password");
+            smtp.EnableSsl = true;
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
         private void SendEmail(Order O)
         {
             GuestRequest guestRequest_order = dal.GetClientRequest(O.GuestRequestKey);

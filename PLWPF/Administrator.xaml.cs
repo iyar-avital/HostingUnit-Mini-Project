@@ -78,7 +78,7 @@ namespace PLWPF
             //List of columns which not gonna be displayed on the data grid
             List<String> columnsToExclude = new List<String>
             {
-                "Owner", "Diary", "AllOrders", "picture"
+                "Owner", "Diary","DiaryDto", "AllOrders", "picture"
             };
 
             //Rename Headers of Columns

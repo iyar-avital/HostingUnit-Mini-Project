@@ -35,7 +35,7 @@ namespace BL
         IEnumerable<IGrouping<int, GuestRequest>> GroupByPeople();
         IEnumerable<IGrouping<int, Host>> GroupHostByNumOfUnit();
         IEnumerable<IGrouping<Areas, HostingUnit>> GroupByAreaOfUnit();
-  
+        void SendEmailTest();
         void OrderMoreThanMonth();
 
 

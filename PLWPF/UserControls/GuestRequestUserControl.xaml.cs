@@ -33,6 +33,16 @@ namespace PLWPF.UserControls
             TypeBox.ItemsSource = Enum.GetValues(typeof(Type_Unit));
 
 
+            var OptionList = Enum.GetValues(typeof(Option));
+
+            //TypeBox.ItemsSource = 
+            PoolBox.ItemsSource = OptionList;
+            AttractionsBox.ItemsSource = OptionList;
+            GardenBox.ItemsSource = OptionList;
+            JacuzziBox.ItemsSource = OptionList;
+            
+
+
 
             EntryDateDP.DisplayDateStart = DateTime.Today;
             EntryDateDP.DisplayDateEnd = DateTime.Today.AddYears(1).AddDays(-2);

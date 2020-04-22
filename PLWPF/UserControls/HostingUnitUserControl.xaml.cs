@@ -23,6 +23,18 @@ namespace PLWPF.UserControls
     /// </summary>
     public partial class HostingUnitUserControl : UserControl
     {
+
+        private List<string> BanksList;
+        private List<string> BranchesByBankList;
+        public string lastSelectedBank { get; set; }
+        public string lastSelectedBranch { get; set; }
+        private BankBranch selectedBranch;
+
+        public bool isAdd { get; set; } = false;
+        public bool isUpdate { get; set; } = false;
+        public bool isView { get; set; } = false;
+
+
         public HostingUnit hu = new HostingUnit() {Diary = new bool[13,32], Owner = new Host() { BankBranchDetails = new BankBranch() } };
         public HostingUnitUserControl()
         {

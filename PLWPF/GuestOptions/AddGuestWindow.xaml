@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF.GuestOptions"
         xmlns:uc="clr-namespace:PLWPF.UserControls"
         mc:Ignorable="d"
-        Title="AddGuestWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Add GuestRequest" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <uc:GuestRequestUserControl x:Name="guestUserControl"/>
         <Button Content="Add Request" Click="Button_Click" HorizontalAlignment="Left" Margin="354,377,0,0" VerticalAlignment="Top" Width="75"/>

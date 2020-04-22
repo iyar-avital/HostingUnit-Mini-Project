@@ -16,7 +16,11 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="55,25,0,0" TextWrapping="Wrap" Text="{Binding Path=Adults, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="130,68,0,0" TextWrapping="Wrap" Text="{Binding Path=FamilyName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="55,68,0,0" TextWrapping="Wrap" Text="{Binding Path=Children, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <Label Content="Children" HorizontalAlignment="Left" Margin="344,68,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="Children" HorizontalAlignment="Left" Margin="337,68,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="Garden" HorizontalAlignment="Left" Margin="344,232,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="Attractions" HorizontalAlignment="Left" Margin="344,112,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="Pool" HorizontalAlignment="Left" Margin="344,148,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="Jacuzzi" HorizontalAlignment="Left" Margin="344,194,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Adults" HorizontalAlignment="Left" Margin="344,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="47,320,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.829,-1.154"/>
         <Label Content="Sub Area" HorizontalAlignment="Left" Margin="44,275,0,0" VerticalAlignment="Top"/>
@@ -36,12 +40,16 @@
                 </TransformGroup>
             </Separator.RenderTransform>
         </Separator>
-        
+
         <ComboBox Name="AreaBox" HorizontalAlignment="Left" SelectedValue="{Binding Path=Area}" Margin="130,236,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox Name="SubAreaBox" HorizontalAlignment="Left" SelectedValue="{Binding Path=SubArea}" Margin="130,279,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox Name="TypeBox" HorizontalAlignment="Left" SelectedValue="{Binding Path=Type}" Margin="130,324,0,0" VerticalAlignment="Top" Width="120"/>
         <DatePicker Name="EntryDateDP" SelectedDate="{Binding Path=EntryDate, Mode=TwoWay}" HorizontalAlignment="Left" Margin="130,152,0,0" VerticalAlignment="Top" SelectedDateChanged="EntryDateDP_SelectedDateChanged" Width="120"/>
         <DatePicker Name="LeaveDateDP" SelectedDate="{Binding Path=ReleaseDate, Mode=TwoWay}" HorizontalAlignment="Left" Margin="130,198,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="PoolBox" Grid.Column="1" HorizontalAlignment="Left" SelectedValue="{Binding Path=Pool, Mode=TwoWay}" Margin="55,152,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="AttractionsBox" Grid.Column="1" HorizontalAlignment="Left" SelectedValue="{Binding Path=ChildrensAttractions, Mode=TwoWay}" Margin="55,112,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="JacuzziBox" Grid.Column="1" HorizontalAlignment="Left" SelectedValue="{Binding Path=Jacuzzi, Mode=TwoWay}" Margin="55,198,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="GardenBox" Grid.Column="1" HorizontalAlignment="Left" SelectedValue="{Binding Path=Garden, Mode=TwoWay}" Margin="55,236,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </UserControl>
