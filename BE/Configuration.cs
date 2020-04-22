@@ -20,8 +20,8 @@ namespace BE
         public static int OrderKeySeq = 30000004;
 
         
-        public static MailAddress mailAddress = new MailAddress("vacation4u2020@gmail.com"); //mail address
-        public static string Password = "Vacation1234"; //if i remember - maill password
+        public static MailAddress mailAddress = new MailAddress("lev.vacation4u@gmail.com"); //mail address
+        public static string Password = "vacation4u1234"; //if i remember - maill password
 
         //add here admin user name and password
         public static string UserName;
