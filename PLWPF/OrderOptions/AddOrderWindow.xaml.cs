@@ -83,12 +83,14 @@ namespace PLWPF.OrderOptions
                 try
                 {
                     order.GuestRequestKey = ((BE.GuestRequest)guest_request).GuestRequestKey;
+                    MainWindow.BL.isOrderAdd = false;
                     MainWindow.BL.AddOrder(order);
                     SuccessMessages.Add("Add order number[" + order.OrderKey + "]");
-
                 }
                 catch (Exception err)
                 {
+                    if(MainWindow.BL.isOrderAdd == true)
+                        SuccessMessages.Add("Add order number[" + order.OrderKey + "]");
                     ErrorMessages.Add(err.Message);
                 }
             }

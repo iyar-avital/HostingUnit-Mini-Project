@@ -11,6 +11,8 @@ namespace BL
     public interface IBL
     {
         Thread orderThread { get; set; }
+        bool isOrderAdd { get; set; } 
+
 
         bool AddClientRequest(GuestRequest Grect);
         bool UpdateClientRequest(GuestRequest Up, Request_Status status);

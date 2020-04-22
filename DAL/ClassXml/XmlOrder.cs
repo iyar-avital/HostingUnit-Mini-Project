@@ -54,9 +54,10 @@ namespace DAL
 
         public void AddOrder(Order order)
         {
-            long key = XC.GetConfiguration<long>("OrderKey");
+            order.OrderKey = (int)XC.GetConfiguration<long>("OrderKey");
+            
             OrderRoot.Add(new XElement("Order",
-                new XElement("OrderKey", key),
+                new XElement("OrderKey", order.OrderKey),
                 new XElement("HostingUnitKey", order.HostingUnitKey),
                 new XElement("GuestRequestKey", order.GuestRequestKey),
                 new XElement("Status", order.StatusOrder),
@@ -64,7 +65,7 @@ namespace DAL
                 new XElement("OrderDate", order.OrderDate)
                 /*new XElement("CommissionValue", order.CommissionValue)*/));
             OrderRoot.Save(OrderPath);
-            XC.UpdateConfiguration<long>("OrderKey", ++key);
+            XC.UpdateConfiguration<long>("OrderKey", order.OrderKey+1);//run
         }
 
         public List<Order> GetAllOrders()

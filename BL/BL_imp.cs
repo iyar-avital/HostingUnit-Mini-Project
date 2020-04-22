@@ -19,6 +19,7 @@ namespace BL
         //////////////////////ClientRequest///////////////////////
 
         public Thread orderThread { get; set; } = null;
+        public bool isOrderAdd { get; set; } = false;
 
         #region Thread Order
         private void ThreadOrderMoreThanMonth()
@@ -162,9 +163,9 @@ namespace BL
         //AddOrder
         public bool AddOrder(Order Aor)
         {
-            var guestReq = dal.LGrequest(item => item.GuestRequestKey == Aor.GuestRequestKey);
+            var guestReq = dal.GetClientRequest(Aor.GuestRequestKey);
 
-            var hostingUnit = dal.Lunit(item => item.HostingUnitKey == Aor.HostingUnitKey);
+            var hostingUnit = dal.GetHostingUnit(Aor.HostingUnitKey);
 
             //throw exeption
             if (hostingUnit == null && guestReq == null)
@@ -175,13 +176,14 @@ namespace BL
                 throw new Exception("The Hosting Unit Is Not Exiest!");
 
             //checks if the order already exists
-            foreach (var order in dal.Lorder())
-                if (order.HostingUnitKey == Aor.HostingUnitKey && order.GuestRequestKey == Aor.GuestRequestKey)
-                    throw new Exception("The Order already exists [" + order.OrderKey + "]");
+            List<Order> Orders = dal.Lorder(order => order.HostingUnitKey == Aor.HostingUnitKey && order.GuestRequestKey == Aor.GuestRequestKey);
+                if (Orders.Count != 0)
+                    throw new Exception("The Order already exists [" + Orders[0].OrderKey + "]");
 
             if (ApproveReq(Aor))//return true if the guest request approved.
             {
                 dal.AddOrder(Aor);
+                isOrderAdd = true;
                 UpdateOrder(Aor, OrderStatus.Sent_Mail);
                 return true;
             }
@@ -278,7 +280,7 @@ namespace BL
             GuestRequest guestRequest_order = dal.GetClientRequest(O.GuestRequestKey);
             HostingUnit hostingUnit_order = dal.GetHostingUnit(O.HostingUnitKey);
             if (hostingUnit_order.Owner.CollectionClearance == false)
-                throw new Exception("Order status cannot be changed without bank account authorization");
+                throw new Exception("Due to not allowing approval bank charge - mail was not sent");
             dal.UpdateOrder(O.Clone(), OrderStatus.Sent_Mail);
             MailMessage mail = new MailMessage();
             mail.To.Add(guestRequest_order.MailAddress);
